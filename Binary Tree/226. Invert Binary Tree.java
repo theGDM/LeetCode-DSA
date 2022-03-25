@@ -21,7 +21,8 @@
 //child(i.e temp)
 class Solution {
     public TreeNode invertTree(TreeNode root) {
-        if(root == null){ //base case
+        //base case
+        if(root == null){
             return null;
         }
         
@@ -29,10 +30,9 @@ class Solution {
         TreeNode libt = invertTree(root.left);
         TreeNode ribt = invertTree(root.right);
         
-        //meeting expectation in postorder
-        TreeNode temp = root.left;
-        root.left = root.right;
-        root.right = temp;
+        //meeting expectation(base case)
+        root.left = ribt;
+        root.right = libt;
         
         return root;
     }
