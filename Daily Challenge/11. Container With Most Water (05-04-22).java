@@ -1,4 +1,4 @@
-//brute force
+//Brute force o(n2)
 class Solution {
     public int maxArea(int[] height) {
         int mArea = Integer.MIN_VALUE;
@@ -11,5 +11,31 @@ class Solution {
             }
         }  
         return mArea;
+    }
+}
+
+//Two pointer O(n) 
+class Solution {
+    public int maxArea(int[] height) {
+        int left = 0;
+        int right = height.length - 1;
+        int maxArea = 0;
+        while(left < right){
+            int area = (right - left) * Math.min(height[left], height[right]);
+            if(area > maxArea){
+                maxArea = area;
+            }
+            
+            if(height[left] < height[right]){
+                ++left;
+            }else if(height[left] > height[right]){
+                --right;
+            }else{
+                ++left;
+                --right;
+            }
+        }
+        
+        return maxArea;
     }
 }
