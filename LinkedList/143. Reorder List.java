@@ -58,7 +58,6 @@ class Solution {
                 second = second.next;
             }
         }
-        
         tail.next = null;
         head = dummy.next;
     }
