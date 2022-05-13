@@ -15,8 +15,7 @@
 import java.util.Stack;
 
 public class Solution {
-    
-	public static void reverseStack(Stack<Integer> stack) {
+    	public static void reverseStack(Stack<Integer> stack) {
 		    // write your code here
         if(stack.size() == 0){
             return;
