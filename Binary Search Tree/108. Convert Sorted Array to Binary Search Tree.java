@@ -15,6 +15,7 @@
  */
 
 class Solution {
+
     public TreeNode construct (int[] nums, int lo, int hi){
         if(lo > hi) //base case
             return null;
