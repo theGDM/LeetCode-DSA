@@ -1,7 +1,6 @@
 //In this question we are asked to find the no of islands(count of cells) which do not touches the wall, of the matrix!
 //in the 1st approach, i set a global variable flag, which tells me whether found island touches walls or not, if it touches i will not 
 //include it in the res Arraylist. and finally we will iterate over the list of arraylist and find the ans. 
-
 class Solution {
     boolean flag = false;
     public int numEnclaves(int[][] grid) {
