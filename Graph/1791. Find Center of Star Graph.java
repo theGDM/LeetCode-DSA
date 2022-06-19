@@ -34,6 +34,19 @@ class Solution {
     }
 }
 
+//o(1) //the main idea is that the center vertex will be there in all the edges so 
+//we do the compariosn between 1st edge and 2nd edge, the vertex which is common in 
+//the both edges will be the center
+class Solution {
+    public int findCenter(int[][] edges) {
+        if(edges[0][0] == edges[1][0] || edges[0][0] == edges[1][1]){
+            return edges[0][0];
+        }else{
+            return edges[0][1];
+        }
+    }
+}
+
 //using freq array o(n - 1) + o(n + 1)
 class Solution {
     public int findCenter(int[][] edges) {
