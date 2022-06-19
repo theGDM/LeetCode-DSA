@@ -1,4 +1,4 @@
-//brute force
+//brute force using hasmap o(n)
 class Solution {
     public int findCenter(int[][] edges) {
         HashMap<Integer, Integer> hm = new HashMap<>();
@@ -33,3 +33,32 @@ class Solution {
         return center;
     }
 }
+
+//using freq array o(n - 1) + o(n + 1)
+class Solution {
+    public int findCenter(int[][] edges) {
+        //given n nodes and exactly n - 1 edges
+        //edges.length + 1 will give us the total vertices
+        int n = edges.length + 1;
+        int[] freq = new int[n + 1];
+        for(int i = 0;i < edges.length; ++i){
+            int v1 = edges[i][0];
+            int v2 = edges[i][1];
+            
+            freq[v1]++;
+            freq[v2]++;
+        }
+          
+        int center = 1;
+        for(int i = 0; i < n + 1; ++i){
+            if(freq[i] > 1){
+                center = i;
+                break;
+            }
+        }
+        
+        return center;
+    }
+}
+
+//optimized
