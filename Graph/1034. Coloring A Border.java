@@ -65,10 +65,65 @@ class Solution {
     }
 }
 
-//BFS Traversal
+
+
 //TC : O(E + V) = O(m * n + 4 * n * m)
 //SC : O(n * m)
 //DFS Traversal
+//yadi shortest path vagerah puchte hai to BFS should be used, otherwise just to travle, we can use any of the
+//traversal eithe BFS or DFS
+//iss solution me ham preorder me jaate hue jo original color hai usko -oc se mark karte jaayenge aur lautte samay
+//i.e postorder(jab kisi cell ki charo call lag jati hai) me check karenge ki kya yah color charo aur se -oc ke absoulte
+//se surrounded hai ya nahi, yadi hai to is grid ki value ko +ve value se replace kar denge
+//aur finally jab ham poora traverse kar lenge to kebal bahi cells boundry hai jinki -ve value hai
+class Solution {
+
+    public int[][] colorBorder(int[][] grid, int row, int col, int color) {
+        int oc = grid[row][col];
+        traverseDFS(row, col, oc, grid);
+        
+        for(int r = 0;r < grid.length; ++r){
+            for(int c = 0;c < grid[0].length; ++c){
+                if(grid[r][c] == -oc){
+                    grid[r][c] = color;
+                }
+            }
+        }
+        
+        return grid;
+    }
+    
+    public void traverseDFS(int r, int c, int oc, int[][] grid){
+        if(r < 0 || c < 0 || r >= grid.length || c >= grid[0].length){
+            return;
+        }else if(grid[r][c] != oc){
+            return;
+        }
+        
+        //preorder me jo cells oc ki hai unko -oc se mark kar diya
+        grid[r][c] = -oc;
+        
+        traverseDFS(r, c - 1, oc, grid);
+        traverseDFS(r + 1, c, oc, grid);
+        traverseDFS(r, c + 1, oc, grid);
+        traverseDFS(r - 1, c, oc, grid);
+        
+        //post order me check karenge ki yadi oc wali cells not a border hai ki nahi
+        if(r > 0 && c > 0 && r < grid.length - 1 && c < grid[0].length - 1
+          && Math.abs(grid[r][c - 1]) == oc
+          && Math.abs(grid[r + 1][c]) == oc
+          && Math.abs(grid[r][c + 1]) == oc
+          && Math.abs(grid[r - 1][c]) == oc){
+            grid[r][c] = oc;
+        }
+    }
+}
+    
+
+
+//BFS Traversal
+//TC : O(E + V) = O(m * n + 4 * n * m)
+//SC : O(n * m)
 //yadi shortest path vagerah puchte hai to BFS should be used, otherwise just to travle, we can use any of the
 //traversal eithe BFS or DFS
 class Solution {
