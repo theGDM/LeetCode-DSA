@@ -47,3 +47,38 @@ class Solution {
         return res;
     }
 }
+
+//Two pointer approch
+class Solution {
+    public int[] intersect(int[] nums1, int[] nums2) {
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        
+        int t = 0; //pointer to nums1
+        int b = 0; //pointer to nums2
+        
+        ArrayList<Integer> res = new ArrayList<>();
+        while(true){
+            if(t >= nums1.length || b >= nums2.length){
+                break;
+            }
+            
+            if(nums1[t] == nums2[b]){ //move both pointer
+                res.add(nums1[t]);
+                ++t;
+                ++b;
+            }else if(nums1[t] > nums2[b]){ //move the pointer which is pointing to smaller one, as its pair can't be there now, as arrays are sorted
+                ++b;
+            }else if(nums1[t] < nums2[b]){
+                ++t;
+            }
+        }
+        
+        int[] a = new int[res.size()];
+        for(int i = 0; i < res.size(); ++i){
+            a[i] = res.get(i);
+        }
+        
+        return a;
+    }
+}
