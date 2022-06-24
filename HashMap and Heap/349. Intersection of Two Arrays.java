@@ -65,7 +65,7 @@ class Solution {
                 break;
             }
             
-            if(nums1[t] == nums2[b]){
+            if(nums1[t] == nums2[b]){ //this t = 0  is very important, because what if first element is 0 itself, so it will fail the condition prev != 0
                 if(t == 0 || nums1[t] != prev){
                     res.add(nums1[t]);
                     prev = nums1[t];
