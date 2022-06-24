@@ -29,6 +29,7 @@ class Solution {
                     unionHelper(bno + 1, bno + 2);
                 }
                 
+                //Two adjacent parts in different cells are contiguous regions.
                 //down box ke sath bhi union 
                 if(i < grid.length - 1){
                     int obno =  4 * ((i + 1) * grid.length + j);
