@@ -1,5 +1,6 @@
 //disjoint union set
 //dividing each cell into to 4 pieces
+//Dividing each cell in 4 different region and depicting each region as a vertex of a graph
 class Solution {
     int[] parent;
     int[] rank;
