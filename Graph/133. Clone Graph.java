@@ -45,3 +45,33 @@ class Solution {
         return nodeClone;
     }
 }
+
+//TC : O(v + E)
+//Array is always faster than hashmap
+class Solution {
+    public Node cloneGraph(Node node) {
+        if(node == null){ //edge case
+            return null;
+        }
+        
+        Node[] visited = new Node[101];
+        return helper(node, visited);
+    }
+    
+    public Node helper(Node node, Node[] visited){
+        Node nodeClone = new Node(node.val); //make the clone node
+        visited[node.val] = nodeClone; //mark that, this val node is already cloned
+        
+        for(Node nbr : node.neighbors){
+            if(visited[nbr.val] == null){
+                Node nbrClone = helper(nbr, visited);
+                nodeClone.neighbors.add(nbrClone);
+            }else{
+                Node nbrClone = visited[nbr.val];
+                nodeClone.neighbors.add(nbrClone);
+            }
+        }
+        
+        return nodeClone;
+    }
+}
