@@ -11,9 +11,9 @@ class Solution {
         // return ans;
         
         // tabulation
-        int[][] dp = new int[m + 1][n + 1];
-        for(int sr = m; sr >= 0; --sr){
-            for(int sc = n; sc >= 0; --sc){
+        int[][] dp = new int[m][n];
+        for(int sr = m - 1; sr >= 0; --sr){
+            for(int sc = n - 1; sc >= 0; --sc){
                 if(sr == m - 1 && sc == n - 1){
                     dp[sr][sc] = 1;
                     continue;
