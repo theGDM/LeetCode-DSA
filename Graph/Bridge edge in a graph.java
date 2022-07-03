@@ -37,6 +37,7 @@ class Solution{
                  low[u] = Math.min(low[u], low[v]);
                  
                  if(low[v] > dis[u]){
+                     //u and v forms a bridge
                     if(c == v && d == u || c == u && d == v){
                         res = 1;
                     }
