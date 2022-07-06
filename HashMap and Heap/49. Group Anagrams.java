@@ -1,3 +1,5 @@
+//Hashmap between frequency map, and the arraylist of strings
+//strings having the same fmap, will belong to the one set only..
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
         HashMap<HashMap<Character, Integer>, ArrayList<String>> bmap = new HashMap<>();
