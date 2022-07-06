@@ -30,7 +30,7 @@ class Solution {
             
             //add the value in edge preorder
             permute.add(nums[i]);
-            getPermutation(idx + 1, newNums, permute);
+            getPermutation(i + 1, newNums, permute);
             permute.remove(permute.size() - 1); //backtrack
         }
     }
