@@ -35,3 +35,47 @@ class Solution {
         return;
     }
 }
+
+
+//2nd approach
+class Solution {
+    List<List<Integer>> combination;
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        Arrays.sort(candidates);
+        combination = new ArrayList<>();
+        helperSum(target, candidates, new ArrayList<>());
+        return combination;
+    }
+    
+    public void helperSum(int target, int[] candidates, List<Integer> comb){
+        if(target == 0){
+            combination.add(new ArrayList(comb));
+            return;
+        }
+        
+        for(int i = 0; i < candidates.length; ++i){
+            if(i - 1 >= 0 && candidates[i] == candidates[i - 1]){ //save from duplicates
+                continue; 
+            }
+            
+            int[] newCandidates = new int[candidates.length - 1];
+            int k = 0;
+            
+            for(int j = 0; j < candidates.length; ++j){
+                if(j > i){ 
+                    newCandidates[k++] = candidates[j];
+                } 
+            }
+            
+            if(target - candidates[i] >= 0){
+                comb.add(candidates[i]);
+                helperSum(target - candidates[i], newCandidates, comb); //call-1
+                comb.remove(comb.size() - 1);
+            }else{
+                break;
+            }
+        }
+        
+        return;
+    }
+}
