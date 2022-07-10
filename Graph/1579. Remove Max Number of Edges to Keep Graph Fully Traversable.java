@@ -29,8 +29,8 @@ class Solution {
             }
         }
         
-        //Now exlplore those edges which alice only can take, if some edge that can take alice to the vertex,
-        //which can be visited using the type 3 vertex than, its unnecessary edge
+        //Now exlplore those edges which alice only can take, if some edge that can take alice to the vertices,
+        //which he can visit using the type 3 edge than, its unnecessary edge
         int[] p1 = p.clone();
         int[] r1 = r.clone();
         for(int[] edge : edges){
@@ -47,6 +47,8 @@ class Solution {
             }
         }
         
+        //Now exlplore those edges which bob only can take, if some edge that can take bob to the vertices,
+        //which he can visit using the type 3 edge than, its unnecessary edge
         int[] p2 = p.clone();
         int[] r2 = r.clone();
         for(int[] edge : edges){
