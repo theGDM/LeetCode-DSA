@@ -1,6 +1,14 @@
 //0's means brick was not there
 //1's means brick is there
 //2 means brick is broken
+
+// We will insert at most N nodes into the disjoint-set data structure which will require O(N⋅α(N)) time. There will also be at most Q hits
+// where we must add a brick into the disjoint-set data structure which will require O(Q⋅α(N)) time. Since each hit location is unique, Q 
+// must be less than or equal to N, so we can simplify the time complexity O(N⋅α(N)).
+
+//Performing all of the initial unions should take O(N * α(N)) and then adding the bricks back in should //take O(Q * α(N)),
+//which simplifies to the form of your time complexity
+
 class Solution {
     int[] parent;
     int[] rank;
