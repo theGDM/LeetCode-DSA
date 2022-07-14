@@ -1,4 +1,5 @@
 //TC : O(n)
+//A number must have only, 2, 3, 5 as its prime factor
 class Solution {
     public boolean isUgly(int n) {
         if (n == 0) return false;
