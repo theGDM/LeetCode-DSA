@@ -50,3 +50,48 @@ class Solution {
         helper(root.right, ch + 1, mh);
     }
 }
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+
+//Single DFS
+class Solution {
+    int maxLevel = 0;
+    int sum = 0;
+    public int deepestLeavesSum(TreeNode root) {
+        helper(root, 1);
+        return sum;
+    }
+    
+    public void helper(TreeNode root, int currLevel){
+        if(root == null){
+            return;
+        }
+        
+        //that means whatever added on sum, is not the val of deepest node
+        if(currLevel > maxLevel){
+            sum = 0;
+            maxLevel = currLevel;
+        }
+        
+        if(currLevel == maxLevel){
+            sum += root.val;
+        }
+        
+        helper(root.left, currLevel + 1);
+        helper(root.right, currLevel + 1);
+    }
+}
