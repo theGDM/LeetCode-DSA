@@ -80,3 +80,58 @@ class Solution {
     }
 }
 
+//PriorityQueue version
+// [[2, 2, 6], [2, 4, 7], [8, 6, 7]]
+// 11
+class Solution {
+    public class Pair implements Comparable<Pair>{
+        int point;
+        int delta;
+        
+        Pair(int point, int delta){
+            this.point = point;
+            this.delta = delta;
+        }
+        
+        public int compareTo(Pair o){
+            if(this.point != o.point){
+                return this.point - o.point;
+            }else{
+                if(this.delta < 0){ //jiska delta -ve hai, usko chhota mana gaya, isiliye wo pahle niklega
+                    return -1; //this wala pahle niklega
+                }else if(o.delta < 0){
+                    return +1; //other wala pahle niklega, yadi uska delta chhota hai 0 se
+                }else{
+                    return 0;
+                }
+            }
+        }
+    }
+    
+    public boolean carPooling(int[][] trips, int capacity) {
+        PriorityQueue<Pair> pq = new PriorityQueue<>();
+        TreeSet<Integer> stops = new TreeSet<>(); //it gives element in increasing order, and do
+                                                  //not contains duplicate entry
+        for(int[] trip : trips){
+            int people = trip[0];
+            int from = trip[1];
+            int to = trip[2];
+            
+            pq.add(new Pair(from, +people));
+            pq.add(new Pair(to, -people));
+        }
+        
+        int currPeople = 0;
+        while(pq.size() > 0){
+            Pair rem = pq.remove();
+            
+            currPeople += rem.delta;
+            
+            if(currPeople > capacity){
+                return false;
+            }
+        }
+        
+        return true;
+    }
+}
