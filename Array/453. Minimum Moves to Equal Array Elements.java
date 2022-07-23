@@ -1,4 +1,6 @@
 //instead of increamenting n - 1 , elements, we can decrement one element
+//in one step incrementing n - 1 element other than max = decrementing only one element at a time
+//relative order will be maintained
 class Solution {
     public int minMoves(int[] nums) {
         int count = 0;
@@ -33,7 +35,6 @@ class Solution {
     }
 }
 
-//reverse approach
 class Solution {
     public int minMoves(int[] nums) {
         if(nums.length == 0) return 0;
