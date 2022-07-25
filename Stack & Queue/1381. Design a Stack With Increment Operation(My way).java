@@ -9,7 +9,6 @@
  
 
 // Example 1:
-
 // Input
 // ["CustomStack","push","push","pop","push","push","push","increment","increment","pop","pop","pop","pop"]
 // [[3],[1],[2],[],[2],[3],[4],[5,100],[2,100],[],[],[],[]]
