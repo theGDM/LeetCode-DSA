@@ -17,6 +17,12 @@
  
 
 //TC : O(sqrt(n))
+//TC : O(sqrt(n))
+//consecutive numbers are positive
+// kx = n - k * ( k - 1)/2
+//first condition -> k = number of terms (always greater than equal to 1)
+                   //x = starting number(it must be natural number)
+//so kx > 0
 class Solution {
     public int consecutiveNumbersSum(int n) {
         int res = 0;
@@ -28,7 +34,7 @@ class Solution {
                 res++;
             }
             
-            k++; //increase the num. of terms
+            k++; //incraese the num. of terms
             check = k * (k - 1) / 2; //update check
         }
         
