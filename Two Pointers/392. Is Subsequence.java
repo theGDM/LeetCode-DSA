@@ -18,6 +18,6 @@ class Solution {
             }
         }
         
-        return i == s.length();
+        return i == s.length(); //means we have found every char of s int t
     }
 }
