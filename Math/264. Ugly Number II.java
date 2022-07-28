@@ -25,7 +25,7 @@ class Solution {
 
 //naive approach
 //SC : O(3 * n)
-//TC : O(n)
+//TC : O(nlogn)
 class Solution {
     public int nthUglyNumber(int n) {
         PriorityQueue<Long> pq = new PriorityQueue<>();
