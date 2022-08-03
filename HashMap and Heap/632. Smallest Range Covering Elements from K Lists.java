@@ -1,7 +1,9 @@
-//TC : Klog(k) + Nlog(k) ~ Nlog(k)
+//TC : Klog(k) + Nlog(k) ~ Nlog(k) ~ nklog(k), where N = nk
 //here N -> Total number of elements in the list
+//if n is the average size of a list, then total elements in k list = n * k
 //In worst we may, process all the elements in the list, while maintaining the size of pq always k
 //SC : log(k)
+
 class Solution {
     public class Pair implements Comparable<Pair>{
         int data;
