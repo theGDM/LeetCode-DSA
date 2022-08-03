@@ -1,3 +1,5 @@
+//TC : O(n), 
+//Example : 3, -2, 4, 1, -7, 2, 6, -5, 8, -3, -7, 6, 2, 1
 class Solution {
     public int subarraySum(int[] nums, int k) {
         HashMap<Integer, Integer> hm = new HashMap<>();
@@ -6,7 +8,7 @@ class Solution {
         hm.put(0, 1);//initially 0 sum to tha hi
         for(int n : nums){
             sum += n;
-            int remSum = sum - k;
+            int remSum = sum - k;  
             if(hm.containsKey(remSum) == true){
                 res += hm.get(remSum);
             }
