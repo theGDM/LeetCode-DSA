@@ -57,3 +57,27 @@ class Solution {
         return -1;
     }
 }
+
+
+//TC : O(n);
+//SC : O(1);
+
+class Solution {
+    public int partitionDisjoint(int[] nums) {
+        int pi = 0;
+        int mts = nums[0]; //max till scan
+        int mtp = nums[0]; //max till partition
+        
+        for(int i = 1; i < nums.length; ++i){
+            mts = Math.max(mts, nums[i]);
+            
+            if(nums[i] < mtp){
+                pi = i;
+                mtp = mts;
+            }
+        }
+        
+            
+        return pi + 1;
+    }
+}
