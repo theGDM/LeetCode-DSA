@@ -1,4 +1,6 @@
 //TC : nlog(n)
+//if we keep (lo <= hi) loop goes infinite
+
 class Solution {
     public int smallestDivisor(int[] nums, int threshold) {
         int lo = 1;
@@ -22,7 +24,7 @@ class Solution {
             if(sum > threshold){
                 lo = mid + 1; //kyuki mid per gadbad aaya hi hai to, to lo ko mid + 1 kar do
             }else{
-                hi = mid; //matlab aur accha answer nikalo ,isse
+                hi = mid; //matlab aur accha answer nikalo ,mid to possible answer ho hi sakta hai
             }
         }
         
