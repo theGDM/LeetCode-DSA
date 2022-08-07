@@ -26,6 +26,8 @@ class Solution {
 //Time complexity : o(n)
 //space complexity : o(n)
 // We gonna fill our map as frequency map. And we gonna get the result by subtracting current value from k & whatever result we get, we gonna check in our map. If that is present increment the count & remove it from the map now. That's how we'll get our answer in just O(1) for searching & as we are using a loop thus, O(N). But it's a good approach.
+
+//exapmle : 1 1 2 2 2 3 3 4 4 4 5 5 6
 class Solution {
     public int maxOperations(int[] nums, int k) {
         HashMap<Integer, Integer> hm = new HashMap<>(); //frequency map
