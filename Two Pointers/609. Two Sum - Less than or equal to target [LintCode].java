@@ -15,11 +15,12 @@ public class Solution {
         int left = 0;
         int right = nums.length - 1;
         while (left < right) {
-            if (nums[left] + nums[right] > target) {
-                right--;
-            } else {
+            int sum = nums[left] + nums[right];
+            if (sum <= target) {
                 count += right - left;
                 left++;
+            } else {
+               right--;
             }
         }
         return count;
