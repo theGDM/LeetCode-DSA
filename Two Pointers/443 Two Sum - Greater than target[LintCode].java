@@ -1,4 +1,5 @@
 //O(nlogn) + o(n)
+//fixing the right element, and finding its all the pairs, on the right
 public class Solution {
     /**
      * @param nums an array of integer
