@@ -17,9 +17,9 @@ public class Solution {
         while (left < right) {
             int sum = nums[left] + nums[right];
             if (sum <= target) {
-                count += right - left;
                 left++;
             } else {
+               count += right - left;
                right--;
             }
         }
