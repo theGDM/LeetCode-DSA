@@ -1,6 +1,12 @@
 //Brute Force O(n4)
 //Normal = nested loops + two pointers = O(n3)
 //Iterative
+
+// [1000000000,1000000000,1000000000,1000000000]
+// -294967296
+
+// [-1000000000,-1000000000,1000000000,-1000000000,-1000000000]
+// 294967296
 class Solution {
     public List<List<Integer>> twoSum(int left, int right, int target, int[] nums){
         int start = left;
