@@ -74,3 +74,67 @@ class Solution {
         return res;
     }
 }
+
+//Brute Force O(n4)
+//Recursive approch // TC = O(n ^ (k - 1))
+class Solution {
+    public List<List<Integer>> twoSum(int left, int target, int[] nums){
+        int start = left;
+        int right = nums.length - 1;
+        List<List<Integer>> res = new ArrayList<>();
+        while(left < right){
+            if(left > start && nums[left] == nums[left - 1]){
+                left++;
+                continue;
+            }
+            
+            int sum = nums[left] + nums[right];
+
+            if(sum < target){
+                left++;
+            }else if(sum > target){
+                right--;
+            }else{
+                List<Integer> part = new ArrayList<>();
+                part.add(nums[left]);
+                part.add(nums[right]);
+                
+                res.add(part);
+                left++;
+                right--;
+            }
+        }
+        
+        return res;
+    }
+    
+    public List<List<Integer>> kSum(int start, int target, int[] nums, int k){
+        if(k == 2){
+            return twoSum(start, target, nums);
+        }
+        
+        List<List<Integer>> res = new ArrayList<>();
+        for(int i = start; i <= nums.length - k; i++){
+            if(i > start && nums[i] == nums[i - 1]) continue; //skip duplicates
+            
+            //important
+            if((long)target - nums[i] < Integer.MIN_VALUE || (long)target - nums[i] > Integer.MAX_VALUE){
+                return new ArrayList<>(); //avoid overflow   
+            }
+            //sub result
+            List<List<Integer>> subRes = kSum(i + 1, target - nums[i], nums, k - 1);
+            
+            for(List<Integer> sub : subRes){
+                sub.add(0, nums[i]);
+                res.add(sub);
+            }
+        }
+        
+        return res;
+    }
+    
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        Arrays.sort(nums);
+        return kSum(0, target, nums, 4);
+    }
+}
