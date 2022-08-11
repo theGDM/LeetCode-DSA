@@ -38,3 +38,32 @@ class Solution {
         return count;
     }
 }
+
+class Solution {
+    //permutation is allowed
+    //worst case : O(n4)
+    //in arr A and B, total pair formed will be N2
+    //in arr C and D, total pair formed will be N2
+    //at worst case let say, sum of all the pairs int (AB) is 1, so they belongs to same key, same with case
+    //pair (CD), all the pairs sum is -1, so there will N4 worst case time complexity
+    //pointer, se kaam ni chalega, kyuki there is chance some quadruplets get missed..
+    //duplicates pairs are allowed
+
+    public int fourSumCount(int[] nums1, int[] nums2, int[] nums3, int[] nums4) {
+        HashMap<Integer, Integer> AB = new HashMap<>();
+        for(int val1 : nums1){
+            for(int val2 : nums2){
+                AB.put((val1 + val2), AB.getOrDefault((val1 + val2), 0 ) + 1);
+            }
+        }
+        
+        int count = 0;
+        for(int val3 : nums3){
+            for(int val4 : nums4){
+                count += AB.getOrDefault(-(val3 + val4), 0);
+            }
+        }
+        
+        return count;
+    }
+}
