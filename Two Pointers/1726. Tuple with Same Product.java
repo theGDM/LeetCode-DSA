@@ -45,3 +45,33 @@ class Solution {
         
     }
 }
+
+// TC: O(n2)
+// To get the solution we have to choose 2 equal products ( Since a * b = c * d ) (a * b = first pair and c * d = second pair)
+// nC2 = n * (n - 1) / 2
+// Then we have to multiply this by 8 because a possible sequence can have 8 arrangements
+
+class Solution {
+    public int tupleSameProduct(int[] nums) {
+        if(nums.length < 0) return 0;
+        
+        HashMap<Integer, Integer> map = new HashMap<>();
+        
+        for(int i = 0;i < nums.length; ++i){
+            for(int j = i + 1; j < nums.length; ++j){
+                int prod = nums[i] * nums[j];
+                map.put(prod, map.getOrDefault(prod, 0) + 1);
+            }
+        }
+        
+        int res = 0;
+        for(int prod : map.keySet()){
+            int freq = map.get(prod);
+            if(freq > 1){
+                res += (freq * (freq - 1) / 2) * 8;
+            }
+        }
+        
+        return res;
+    }
+}
