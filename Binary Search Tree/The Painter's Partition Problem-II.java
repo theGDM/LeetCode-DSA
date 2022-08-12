@@ -9,7 +9,8 @@ class Solution{
        }
        
        while(lta < hta){
-           long allwedTime = lta + (hta - lta) / 2;
+           long allwedTime = lta + (hta - lta) / 2; //iss time ke hisab se kitne painter lagte, matlab
+           //ek painter ko itna hi time milega, to uss hisab se kitne painter lag jaayege
            
            int noOfPainters = 1;
            int timeTaken = 0;
@@ -24,7 +25,7 @@ class Solution{
            }
            
            if(noOfPainters > k){ //no of painters zyada ho gaye, matlab allowed time kafi kam kardiya,
-               lta = allwedTime + 1; //isiliye badaho use
+               lta = allwedTime + 1; //isiliye badaho use, to ek painter ko zyada time do
            }else{
                hta = allwedTime;
            }
