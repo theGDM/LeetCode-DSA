@@ -18,7 +18,7 @@ class Solution {
             }
             
             if(totalHours > h){
-                las = as + 1;
+                las = as + 1; //iska matlab kuchh zyzad hi slow kha rahe ho, speed badhao
             }else{
                 has = as;
             }
