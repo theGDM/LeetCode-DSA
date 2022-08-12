@@ -1,0 +1,23 @@
+// [7,7,8,3,1,2,7,2,9,5]
+// 6
+class Solution {
+    public int countKDifference(int[] nums, int k) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int ans = 0;
+        for(int n : nums){
+            int tar1 = n + k; //check if n + k exist or not
+            if(map.containsKey(tar1) == true){
+                ans += map.get(tar1);
+            }
+            
+            int tar2 = (n - k); //like target is 6 and n = 2, then search -4, 8
+            if(map.containsKey(tar2) == true){
+                ans += map.get(tar2);
+            }
+            
+            map.put(n, map.getOrDefault(n, 0) + 1);
+        }
+        
+        return ans;
+    }
+}
