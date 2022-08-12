@@ -9,10 +9,11 @@ class Solution {
         
         while(las < has){
             int as = (las + has) / 2; //allowed speed
-    
+            //allowed speed nikalo, aur uss spped ke anusaaar check karo, ki total hours kitne lag rahe hai,
+            //pure bananas ko khane ke liye...
             int totalHours = 0;
             for(int pile : piles){
-                int time = (pile + as - 1) / as;
+                int time = (pile + as - 1) / as;//ceil value
                 totalHours += time; //total hours taken to eat all the bananas from piles, if allowed spped is as
             }
             
