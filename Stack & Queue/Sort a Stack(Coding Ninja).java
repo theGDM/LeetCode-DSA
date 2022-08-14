@@ -44,3 +44,31 @@ public class Solution {
         insertAtsortedPos(stack, val);
 	}
 }
+
+import java.util.*;
+public class Solution {
+
+    public static void sortStack(Stack<Integer> stk) {
+	// Write your code here.
+        if(stk.isEmpty()) return;
+        
+        int top = stk.pop();
+        sortStack(stk);
+        insertAtCorrectPos(stk, top);
+    }
+    
+    public static void insertAtCorrectPos(Stack<Integer> stk, int val){
+        if(stk.isEmpty()){
+            stk.push(val);
+            return;
+        }
+        
+        if(stk.peek() > val){ //if val is greater than the stack peek, remove it
+            int top = stk.pop();
+            insertAtCorrectPos(stk, val);
+            stk.push(top);
+        }else{ //if less than equal to the peek, just add at the top
+            stk.push(val);
+        }
+    }
+}
