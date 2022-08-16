@@ -1,4 +1,4 @@
-//TC : nlog(SIZE), SIZE is actually the search region (lo........hi)
+//TC : (n + m)log(SIZE), SIZE is actually the search region (lo........hi)
 class Solution {
     public int kthSmallest(int[][] matrix, int k) {
         int m = matrix.length;
