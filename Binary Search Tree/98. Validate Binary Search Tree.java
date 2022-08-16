@@ -86,3 +86,54 @@ class Solution {
    return false;
   }
 }
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+
+//O(n) approach Using pair class
+class Solution {
+    public class BSTPair{
+        boolean isBST;
+        long max;
+        long min;
+    }
+    
+    public boolean isValidBST(TreeNode root) {
+        BSTPair ans = helper(root);
+        return ans.isBST;
+    }
+    
+    public BSTPair helper(TreeNode root){
+        if(root == null){
+            BSTPair bp = new BSTPair();
+            bp.max = Long.MIN_VALUE;
+            bp.min = Long.MAX_VALUE;
+            bp.isBST = true;
+            
+            return bp;
+        }
+        
+        BSTPair lp = helper(root.left);
+        BSTPair rp = helper(root.right);
+        
+        BSTPair curr = new BSTPair();
+        curr.isBST = (long)root.val > lp.max && (long)root.val < rp.min && lp.isBST && rp.isBST;
+        curr.max = Math.max(root.val, Math.max(lp.max, rp.max));
+        curr.min = Math.min(root.val, Math.min(lp.min, rp.min));
+        
+        return curr;
+    }
+}
