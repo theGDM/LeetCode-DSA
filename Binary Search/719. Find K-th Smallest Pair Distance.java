@@ -32,3 +32,50 @@ class Solution {
         return lo;
     }
 }
+
+class Solution {
+    public int smallestDistancePair(int[] nums, int k) {
+        Arrays.sort(nums);
+        
+        int lo = Integer.MAX_VALUE; //minimum gap;
+        for(int i = 0; i < nums.length - 1; ++i){
+            lo = Math.min(lo, nums[i + 1] - nums[i]);
+        }
+        
+        int hi = nums[nums.length - 1] - nums[0]; //maximum gap
+        
+        while(lo < hi){
+            int mid = lo + (hi - lo) / 2;
+            int count = 0;
+            
+            //O(n) me kaise find kar sakte the ki kitne pair, aapke mid se barabar ya kam hai
+            int i = 0; 
+            int j = 1;
+            
+            //difference pair(Two pointer approach)
+            while(i < nums.length && j < nums.length){
+                int diff = nums[j] - nums[i];
+                
+                if(i == j){
+                    j++;
+                    continue;
+                }
+                
+                if(diff <= mid){
+                    count += j - i;
+                    j++;
+                }else{
+                    i++;
+                }
+            }
+            
+            if(count < k){
+                lo = mid + 1;
+            }else{
+                hi = mid;
+            }
+        }
+        
+        return lo;
+    }
+}
