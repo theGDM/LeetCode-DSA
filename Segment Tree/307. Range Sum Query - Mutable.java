@@ -32,6 +32,7 @@ class NumArray {
 //can be implemnted using segment tree, so that we will have the update operation with TC : O(log(n))
 //and rangeSum operation with TC : O(log(n));
 //Overall TC : nlog(n)
+//kisi bhi level per 4 se zyada query visit nahi hogi, kyuki we need continuous range
 class NumArray {
     public class Node{
         int st;
