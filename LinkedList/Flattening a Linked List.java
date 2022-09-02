@@ -1,3 +1,21 @@
+/*Node class  used in the program
+class Node
+{
+	int data;
+	Node next;
+	Node bottom;
+	
+	Node(int d)
+	{
+		data = d;
+		next = null;
+		bottom = null;
+	}
+}
+*/
+/*  Function which returns the  root of 
+    the flattened linked list. */
+
 class GfG{
     Node flatten(Node root){
 	    if(root == null || root.next == null){ //0 or 1 node return it
