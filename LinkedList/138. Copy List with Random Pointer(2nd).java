@@ -41,3 +41,60 @@ class Solution {
         return copyHead.next;
     }  
 }
+
+/*
+// Definition for a Node.
+class Node {
+    int val;
+    Node next;
+    Node random;
+
+    public Node(int val) {
+        this.val = val;
+        this.next = null;
+        this.random = null;
+    }
+}
+*/
+
+//TC : O(3n)
+class Solution {
+    public Node copyRandomList(Node head) {
+        if(head == null) return null;
+        
+        Node original = head; //insert duplicate nodes in between
+        while(original != null){
+            Node temp = new Node(original.val);
+            
+            temp.next = original.next;
+            original.next = temp;
+            original = temp.next; //move original pointer
+        }
+        
+        original = head;
+        //updating the random of the duplicate linkedlist
+        while(original != null){
+            Node randomNode = original.random;
+            if(original.random != null) randomNode = randomNode.next;
+            original.next.random = randomNode;
+            original = original.next.next;
+        }
+        
+        original = head;
+        Node copyHead = head.next;
+        
+        //segreggeting the original and duplicate linked list
+        while(original != null){
+            Node duplicate = original.next;
+            original.next = duplicate.next;
+            
+            if(duplicate.next != null){
+                duplicate.next = duplicate.next.next;
+            }
+            
+            original = original.next;
+        }
+        
+        return copyHead;
+    }  
+}
