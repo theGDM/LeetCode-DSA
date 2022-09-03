@@ -58,6 +58,7 @@ class Node {
 */
 
 //TC : O(3n)
+//SC : O(1)
 class Solution {
     public Node copyRandomList(Node head) {
         if(head == null) return null;
