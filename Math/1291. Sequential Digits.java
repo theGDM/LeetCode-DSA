@@ -24,3 +24,23 @@ class Solution {
         return res;
     }
 }
+
+// Time Complexity :- BigO(1), because low & high are in range of 10^2 <= l,h <= 10^9 and it is constant
+// Space Complexity :- BigO(1) as space we are just using the list that we want to return. So, if you dont count that space it it will be constant then
+class Solution {
+    public List<Integer> sequentialDigits(int low, int high) {
+        String digits = "123456789";
+        int l = (low + "").length();
+        int h = (high + "").length();
+        System.out.println(l + " " + h);
+        List<Integer> res = new ArrayList<>();
+        for(int i = l; i <= h; ++i){
+            for(int j = 0; j <= 9 - i; ++j){
+                int digit = Integer.parseInt(digits.substring(j, j + i));
+                if(digit >= low && digit <= high) res.add(digit);
+            }
+        }
+        
+        return res;
+    }
+}
