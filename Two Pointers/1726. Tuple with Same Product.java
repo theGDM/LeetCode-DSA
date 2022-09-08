@@ -23,9 +23,6 @@ class Solution {
                 if(i == j) continue;
                 
                 int prod = nums[i] * nums[j];
-                if(map.containsKey(prod) == false){
-                    continue;
-                }
                 
                 for(List<Integer> pair : map.get(prod)){
                     if(i != pair.get(0) && i != pair.get(1) && j != pair.get(0) && j != pair.get(1)){
