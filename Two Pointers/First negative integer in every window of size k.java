@@ -48,7 +48,7 @@ class Compute {
         res[idx++] = queue.size() != 0 ? A[queue.getFirst()] : 0;
         
         for(int i = K; i < N; ++i){
-            if(queue.size() > 0 && queue.getFirst() <= i - K){ //remove, 
+            if(queue.size() > 0 && queue.getFirst() == i - K){ //remove,  
                 queue.removeFirst();
             }
             
