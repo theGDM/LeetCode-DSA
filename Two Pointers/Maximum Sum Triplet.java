@@ -1,6 +1,6 @@
 public class Solution {
+    //TC : O(n2)
     public int solve(ArrayList<Integer> A) {
-        
         int ans = Integer.MIN_VALUE;
         for(int i = 1; i < A.size() - 1; ++i){
             int maxleft = 0, maxright = 0;
