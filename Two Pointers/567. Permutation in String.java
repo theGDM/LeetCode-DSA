@@ -1,4 +1,3 @@
-//TC : O(26 * s2.length)
 class Solution {
     public boolean checkInclusion(String s1, String s2) {
         int[] reqFreq = new int[26];
@@ -23,7 +22,7 @@ class Solution {
                 currFreq[excIdx]--;
             }
             
-            if(isEqual(reqFreq, currFreq) == true){ //check curr frequecy array is matched with the required 
+            if(i >= win - 1 && isEqual(reqFreq, currFreq) == true){ //check curr frequecy array is matched with the required 
                 return true;                  //frequency array, with current window
             }
         }
