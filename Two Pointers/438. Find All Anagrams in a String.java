@@ -22,7 +22,7 @@ class Solution {
                 currFreq[excIdx]--;
             }
             
-            if(isEqual(reqFreq, currFreq) == true){ //check curr frequecy array is matched with the required 
+            if(i >= win - 1 && isEqual(reqFreq, currFreq) == true){ //check curr frequecy array is matched with the required 
                 res.add(i - win + 1);               //frequency array, with current window
             }                                       //add the starting index
         }
