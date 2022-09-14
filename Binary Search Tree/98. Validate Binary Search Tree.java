@@ -13,7 +13,6 @@
  *     }
  * }
  */
-
 //O(n) approach
 class Solution {
     public void getInorder(TreeNode node, ArrayList<Integer> in){
