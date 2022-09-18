@@ -25,7 +25,6 @@ class Solution {
                 min--;
             }
         }
-        
         return res;
     }
 }
