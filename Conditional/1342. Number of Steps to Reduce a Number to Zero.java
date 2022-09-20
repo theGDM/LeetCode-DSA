@@ -7,7 +7,6 @@ class Solution {
             }else{
                 --num;
             }
-            
             ++steps;
         }
         return steps;
