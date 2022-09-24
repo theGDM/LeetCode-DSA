@@ -25,9 +25,10 @@ class Solution {
             
             if(dq.size() > 0 && dq.getFirst() == i){
                 dq.removeFirst(); //remove that from dq, and also that bracket got skipped
-            }else{
-                res.append(ch);
+                continue;
             }
+                
+            res.append(ch);
         }
         
         return res.toString();
