@@ -41,6 +41,8 @@ class Solution {
 
 
 //"a(bcdefghijkl(mno)p)q"
+//TC : O(n2)
+//SC : O(n)
 class Solution {
     public String reverseParentheses(String s) {
         Stack<StringBuilder> stk = new Stack<>();
@@ -63,12 +65,9 @@ class Solution {
                     part.insert(0, str);
                     
                 }
-                // System.out.println(part);
                 stk.pop(); //pop opening bracket as well
                 stk.push(part.reverse());
             }
-            
-            System.out.println(stk);
         }
         
         if(stk.size() > 1){
