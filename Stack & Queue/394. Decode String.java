@@ -60,3 +60,33 @@ class Solution {
         }
     }
 }
+
+
+//TC : O(n)
+//SC : O(n) recursion call stack space
+class Solution {
+    int idx = 0;
+    public String decodeString(String s) {
+        StringBuilder res = new StringBuilder();
+        int count = 0;
+        while(idx < s.length() && s.charAt(idx) != ']'){
+            char ch = s.charAt(idx);
+            idx++;
+            
+            if(ch >= '0' && ch <= '9'){
+                count = count * 10 + (ch - '0');
+            }else if(ch == '['){
+                String chhotaRes = decodeString(s);
+                for(int i = 0; i < count; ++i){
+                    res.append(chhotaRes);
+                }
+                count = 0;
+            }else{
+                res.append(ch); //characters from a to z
+            }
+        }
+        
+        if(idx < s.length()) idx++; //skip the closing brackets
+        return res.toString();
+    }
+}
