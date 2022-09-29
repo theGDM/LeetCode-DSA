@@ -14,6 +14,7 @@ class Solution {
     }
 }
 
+
 //Two pointer O(n) 
 class Solution {
     public int maxArea(int[] height) {
