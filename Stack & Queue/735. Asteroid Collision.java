@@ -1,16 +1,16 @@
 //TC : O(n)
-//SC : O(n)
+//SC : O(n) worst case : when all the asteroids will have the same direction, either right or left
 class Solution {
     public int[] asteroidCollision(int[] asteroids) {
         Deque<Integer> dq = new ArrayDeque<>();
         
         for(int i = 0; i < asteroids.length; ++i){
-            int currAst = asteroids[i]; //Current Asteroid
+            int currAst = asteroids[i];
     
             if(dq.size() > 0 && dq.getLast() > 0 && currAst < 0){ //opposite direction(o ---->  <---- o) //Collision will happen
                 boolean flag = true;
                 while(dq.size() > 0 && dq.getLast() > 0 && currAst < 0){
-                    if(dq.getLast() == Math.abs(currAst)){ //[5, 10, -10(currAst)] = [5]
+                    if(dq.getLast() == Math.abs(currAst)){
                         dq.removeLast();
                         flag = false;
                         break; //as both asteroid will get distroyed, so stop here
