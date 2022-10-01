@@ -5,12 +5,12 @@ class Solution {
         Deque<Integer> dq = new ArrayDeque<>();
         
         for(int i = 0; i < asteroids.length; ++i){
-            int currAst = asteroids[i];
+            int currAst = asteroids[i]; //current asteroid
     
-            if(dq.size() > 0 && dq.getLast() > 0 && currAst < 0){ //opposite direction(o ---->  <---- o) //Collision will happen
+            if(dq.size() > 0 && dq.getLast() > 0 && currAst < 0){ //opposite direction(o ---->  <---- o) //Collision will happen, E.g. [10, -6(currAst)]
                 boolean flag = true;
                 while(dq.size() > 0 && dq.getLast() > 0 && currAst < 0){
-                    if(dq.getLast() == Math.abs(currAst)){
+                    if(dq.getLast() == Math.abs(currAst)){ //[5, 10, -10(currAst)] = [5]
                         dq.removeLast();
                         flag = false;
                         break; //as both asteroid will get distroyed, so stop here
@@ -24,11 +24,11 @@ class Solution {
                 
                 if(flag == true) dq.addLast(currAst);
                 // System.out.println(dq);
-            }else if(dq.size() > 0 && dq.getLast() > 0 && currAst > 0){ //same direction
+            }else if(dq.size() > 0 && dq.getLast() > 0 && currAst > 0){ //same direction, e.g. [5, 7(currAst)]
                 dq.addLast(currAst);   
-            }else if(dq.size() > 0 && dq.getLast() < 0 && currAst < 0){ //same direction
+            }else if(dq.size() > 0 && dq.getLast() < 0 && currAst < 0){ //same direction, e.g. [-5, -9(currAst)]
                 dq.addLast(currAst);   
-            }else if(dq.size() > 0 && dq.getLast() < 0 && currAst > 0){ //opposite direction( <---- o  o---->) //No collision
+            }else if(dq.size() > 0 && dq.getLast() < 0 && currAst > 0){ //opposite direction( <---- o  o---->) //No collision, E.g. [-6, 10(currAst)]
                 dq.addLast(currAst); 
             }else{ //dq is empty
                 dq.addLast(currAst); 
