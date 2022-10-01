@@ -5,12 +5,12 @@ class Solution {
         Deque<Integer> dq = new ArrayDeque<>();
         
         for(int i = 0; i < asteroids.length; ++i){
-            int currAst = asteroids[i];
-            System.out.println(currAst);
+            int currAst = asteroids[i]; //Current Asteroid
+    
             if(dq.size() > 0 && dq.getLast() > 0 && currAst < 0){ //opposite direction(o ---->  <---- o) //Collision will happen
                 boolean flag = true;
                 while(dq.size() > 0 && dq.getLast() > 0 && currAst < 0){
-                    if(dq.getLast() == Math.abs(currAst)){
+                    if(dq.getLast() == Math.abs(currAst)){ //[5, 10, -10(currAst)] = [5]
                         dq.removeLast();
                         flag = false;
                         break; //as both asteroid will get distroyed, so stop here
