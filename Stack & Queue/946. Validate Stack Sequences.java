@@ -25,3 +25,23 @@ class Solution {
         return stk.size() == 0 ? true : false;
     }
 }
+
+//TC : O(n)
+//SC : O(1) extra space without using HashSet
+class Solution {
+    public boolean validateStackSequences(int[] pushed, int[] popped) {
+        Stack<Integer> stk = new Stack<>();
+        
+        int i = 0;
+        for(int x : pushed){
+            stk.push(x);
+            
+            while(stk.size() > 0 && stk.peek() == popped[i]){
+                stk.pop();
+                i++;
+            }
+        }
+        
+        return stk.empty();
+    }
+}
