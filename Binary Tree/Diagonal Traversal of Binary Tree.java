@@ -99,7 +99,7 @@ class Tree{
 }
 
 
-//TC : O(n) //DFS
+//TC : O(n) //Iterative Solution
 class Tree{
     public ArrayList<Integer> diagonal(Node root) {
         if(root == null) return new ArrayList<>(); //edge case yadi root hi null ho
