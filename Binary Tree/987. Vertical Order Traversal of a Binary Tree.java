@@ -81,7 +81,6 @@ class Solution {
     }
 }
 
-//Using ArrayList
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -97,7 +96,7 @@ class Solution {
  *     }
  * }
  */
-
+//TC : O(n) + (maxr - maxl)log(n), logn for sorting of arraylist of pair for each vertical level
 class Solution {
     public class Pair implements Comparable<Pair>{
         TreeNode node;
@@ -110,7 +109,7 @@ class Solution {
             this.vl = vl;
         }
         
-        public int compareTo(Pair O){
+        public int compareTo(Pair O){ //criteria for sorting
             if(this.hl == O.hl){
                 return this.node.val - O.node.val;
             }else{
@@ -150,7 +149,6 @@ class Solution {
                 }
             }   
         }
-        
         
         for(int i = minl; i <= maxr; ++i){
             ArrayList unsortedList = hm.get(i);
