@@ -68,10 +68,10 @@ class Solution {
         }
         
         for(int i = minl; i <= maxr; ++i){
-            PriorityQueue pq = hm.get(i);
+            PriorityQueue<Pair> pq = hm.get(i);
             List<Integer> part = new ArrayList<>();
             while(pq.size() > 0){
-                Pair p = (Pair)pq.remove();
+                Pair p = pq.remove();
                 part.add(p.node.val);
             }
             res.add(part);
@@ -151,12 +151,12 @@ class Solution {
         }
         
         for(int i = minl; i <= maxr; ++i){
-            ArrayList unsortedList = hm.get(i);
+            ArrayList<Pair> unsortedList = hm.get(i);
             List<Integer> part = new ArrayList<>();
             Collections.sort(unsortedList); //if you are sorting the array of pair, you need to implement
                                             //the comparable
             for(int j = 0; j < unsortedList.size(); ++j){
-                Pair p = (Pair)unsortedList.get(j);
+                Pair p = unsortedList.get(j);
                 part.add(p.node.val);
             }
             res.add(part);
