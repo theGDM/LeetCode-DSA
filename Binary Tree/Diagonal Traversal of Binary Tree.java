@@ -86,7 +86,8 @@ class Tree{
         ArrayList<Integer> res = new ArrayList<>();
         for(int i = 0; i <= maxdl; ++i){
             ArrayList<Integer> part = hm.get(i);
-            for(int n : part){
+            if(part == null) break; //if root hi null pass kiya ho tab, 0 ke corresponding jo bhi aayega
+            for(int n : part){      //bo null hoga, so null pointer exception aa jayega
                 res.add(n);
             }
         }
