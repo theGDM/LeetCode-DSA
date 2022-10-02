@@ -1,3 +1,4 @@
+//O(3N) ~ O(N)
 class Solution{
     void leftMostNodesWithoutLeaf(Node node, ArrayList<Integer> lmn){
         if(node == null){
@@ -43,7 +44,6 @@ class Solution{
             return;
         }
     
-        
         leafNodes(node.left, ln);
         
         if(node.left == null && node.right == null){
