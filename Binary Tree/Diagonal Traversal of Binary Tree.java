@@ -62,17 +62,6 @@ class Tree{
     }
 }
 
-/* Node is defined as
-class Node{
-    int data;
-    Node left;
-    Node right;
-    Node(int data){
-        this.data = data;
-        left=null;
-        right=null;
-    }
-}*/
 
 //TC : O(n) //DFS
 class Tree{
@@ -109,3 +98,27 @@ class Tree{
     }
 }
 
+
+//TC : O(n) //DFS
+class Tree{
+    public ArrayList<Integer> diagonal(Node root) {
+        if(root == null) return new ArrayList<>(); //edge case yadi root hi null ho
+        
+        ArrayList<Integer> res = new ArrayList<>();
+        Queue<Node> q = new ArrayDeque<>();
+        q.add(root);
+        
+        while(q.size() > 0){
+            Node rem = q.remove();
+            while(rem != null){
+                res.add(rem.data);//right child AL me add karte raho
+                if(rem.left != null){ //yadi left child null nahi hai to, q me daalte jao
+                    q.add(rem.left);
+                }
+                rem = rem.right;
+            }
+        }
+        
+        return res;
+    }
+}
