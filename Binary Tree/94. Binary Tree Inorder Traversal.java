@@ -13,6 +13,7 @@
  *     }
  * }
  */
+//TC : O(n), SC : O(logn)
 class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> ans = new ArrayList<>();
@@ -49,7 +50,7 @@ class Solution {
  *     }
  * }
  */
-//TC : O(n), SC : O(n), Iterative
+//TC : O(n), SC : O(H), Iterative
 class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<>();
@@ -87,7 +88,7 @@ class Solution {
  * }
  */
 //Morrise Traversal
-//TC : O(n) , SC : O(1) No recursion and Iterative + O(1) sc
+//TC : O(2n) , SC : O(1) No recursion and Iterative + O(1) sc
 class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<>();
