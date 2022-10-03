@@ -13,7 +13,7 @@
  *     }
  * }
  */
-//TC : O(n), SC : O(logn)
+//TC : O(n), SC : O(n), worst case
 class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> ans = new ArrayList<>();
@@ -50,7 +50,7 @@ class Solution {
  *     }
  * }
  */
-//TC : O(n), SC : O(H), Iterative
+//TC : O(n), SC : O(n), Iterative
 class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<>();
