@@ -33,7 +33,7 @@ class Solution {
         return ts;
     }
     
-    //TC : O(n), SC : O(n)
+    //TC : O(n), SC : O(n) = Recursion ka call stack
     public boolean btreeGameWinningMove(TreeNode root, int n, int x) {
         size(root, x); //O(n)
         int theOtherSide = n - (xLeftST + xRightST + 1);
