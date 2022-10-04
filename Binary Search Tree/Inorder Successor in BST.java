@@ -87,6 +87,7 @@ class Solution{
             if(curr.left == null){ //No left subtree
                 if(prev == x){
                     successor = curr;
+                    return successor;
                 }
                 prev = curr;
                 curr = curr.right; //go to right
@@ -102,6 +103,7 @@ class Solution{
                 }else{ //left is processed
                     if(prev == x){
                         successor = curr;
+                        return successor;
                     }
                     prev = curr;
                     iop.right = null; //break the link
