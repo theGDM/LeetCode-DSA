@@ -74,3 +74,42 @@ class Solution{
         return successor;
     }
 }
+
+//Using prev and curr
+//TC : O(n), SC : O(1)
+class Solution{
+    // returns the inorder successor of the Node x in BST (rooted at 'root')
+	public Node inorderSuccessor(Node root,Node x){
+        Node curr = root;
+        Node successor = null;
+        Node prev = null;
+        while(curr != null){
+            if(curr.left == null){ //No left subtree
+                if(prev == x){
+                    successor = curr;
+                }
+                prev = curr;
+                curr = curr.right; //go to right
+            }else{
+                Node iop = curr.left; //inorder predessor
+                while(iop.right != null && iop.right != curr){
+                    iop = iop.right;
+                }
+                
+                if(iop.right == null){ //left is not processd
+                    iop.right = curr; //make the thread 
+                    curr = curr.left; 
+                }else{ //left is processed
+                    if(prev == x){
+                        successor = curr;
+                    }
+                    prev = curr;
+                    iop.right = null; //break the link
+                    curr = curr.right;
+                }
+            }
+        }
+        
+        return successor;
+    }
+}
