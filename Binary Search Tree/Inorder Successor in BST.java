@@ -60,11 +60,11 @@ class Solution{
             return successor;
         }
         
-        while(root != null){
+        while(root != null){ //x tak pahuchne ke liye, jahan se last mod liya tha, bahi answer hai
             if(x.data > root.data){
                 root = root.right;
             }else if(x.data < root.data){
-                successor = root;
+                successor = root; //can be potential answer
                 root = root.left;
             }else{
                 break;
