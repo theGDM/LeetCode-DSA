@@ -1,6 +1,7 @@
 //Root to Node
 //TC : O(n), SC : O(1), if we ignore recursion call stack space
 //Travel and Change approach
+//10 20 -3 4 50 60 -70 N N -80 -9 -100 15 N N N N N N N N -5
 class Solution{
     public static int max;
     public static int maxPathSum(Node root){
