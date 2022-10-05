@@ -41,8 +41,8 @@ class Solution{
 class Solution{
     public static int max;
     public static int maxPathSum(Node root){
-        max = Integer.MIN_VALUE;
-        helper(root, 0);
+        max = Integer.MIN_VALUE; //it is very much important to initialize static variable in main code, as the code will be run for multiple testcase, not for
+        helper(root, 0);         //single test case, otherwise the same max will be used for other testcases, if we do not update it.
         return max;
     }
     
