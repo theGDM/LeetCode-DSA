@@ -34,3 +34,29 @@ class Solution{
         }
     }
 }
+
+
+//TC : O(n), SC : O(1), if we ignore recursion call stack space
+//Travel and Change approach
+class Solution{
+    public static int max;
+    public static int maxPathSum(Node root){
+        max = Integer.MIN_VALUE;
+        helper(root, 0);
+        return max;
+    }
+    
+    public static void helper(Node root, int csum){
+        if(root == null) return;
+        if(root.left == null && root.right == null){
+            csum += root.data;
+            if(csum > max){
+                max = csum;
+            }
+            return;
+        }
+        
+        helper(root.left, csum + root.data);
+        helper(root.right, csum + root.data);
+    }
+}
