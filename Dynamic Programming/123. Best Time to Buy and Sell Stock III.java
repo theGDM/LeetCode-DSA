@@ -1,4 +1,5 @@
 //TC : O(n)
+//Greedy
 class Solution {
     public int maxProfit(int[] prices) {
         //best on the the, left, upto you(you may to included)
@@ -36,6 +37,7 @@ class Solution {
         
         int op = 0; //overall profit
         for(int i = 0; i < prices.length; ++i){
+            // System.out.println(dpmpisut[i] + "  "+ dpmpisat[i]);
             if(dpmpisut[i] + dpmpisat[i] > op){
                 op = dpmpisut[i] + dpmpisat[i];
             }
