@@ -1,5 +1,5 @@
 //TC : O(n)
-//special case, Here Leaf node is a node which is connected to exactly one different node.
+//special case, root is that node, which have exactly one parent
 class Solution{
     int max;
     int maxPathSum(Node root){ 
@@ -8,18 +8,18 @@ class Solution{
         if(root.left != null && root.right != null){
             dfs(root);
             return max;
-        }else{
+        }else{ //this is the case when root is also the leaf
             int val = dfs(root);
             return Math.max(max, val);
         }
     } 
     
-    //it will return root to node max;
+    //it will return root to leaf max;
     public int dfs(Node root){
         if(root.left != null && root.right != null){
             int left = dfs(root.left);
             int right = dfs(root.right);
-            if(left + root.data + right > max){ //updationg left to left max
+            if(left + root.data + right > max){ //updationg leaf to leaf max
                 max = left + root.data + right;
             }
             return Math.max(left, right) + root.data;
