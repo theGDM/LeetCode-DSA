@@ -12,11 +12,11 @@ class Solution{
         if(root.left != null && root.right != null){
             int left = dfs(root.left);
             int right = dfs(root.right);
-            if(left + root.data + right > max){ //updationg left to left max
+            if(left + root.data + right > max){ //updationg leaf to leaf max
                 max = left + root.data + right;
             }
             
-            return Math.max(left, right) + root.data;
+            return Math.max(left, right) + root.data; //dono path me se jo bhi max wahi jaayega, uper
         }else if(root.left != null){
             int left = dfs(root.left);
             return root.data + left;
