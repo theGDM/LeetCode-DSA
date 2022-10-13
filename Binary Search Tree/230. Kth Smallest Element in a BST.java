@@ -31,21 +31,6 @@ class Solution {
     }
 }
 
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
 //Using static variables
 //TC : O(n)
 class Solution {
@@ -60,7 +45,7 @@ class Solution {
     
     public void dfs(TreeNode root){
         if(root == null) return;
-        dfs(root.left);
+        if(p != 0) dfs(root.left);
 
         p--;
         if(p == 0){
@@ -68,8 +53,41 @@ class Solution {
             return;
         }
         
-        dfs(root.right);
+        if(p != 0) dfs(root.right);
     }
 }
 
-//Without static variables
+//Without static variables (fatster than 100%)
+// 1.Taking advantage of the fact that the nodes have positive values only.
+// 2. We do an inorder traversal. Left->Root->Right. When processing the root, increment the global processed nodes dec by 1.
+// 3. As soon as count hits 'k', we have found the 'k'th smallest node. Return it.
+// 4. Otherwise return -1 indicating that 'k'th smallest node has not yet been found
+//smart call
+class Solution {
+    int pos;
+    public int kthSmallest(TreeNode root, int k) {
+        pos = k;
+        return dfs(root);
+    }
+    
+    public int dfs(TreeNode root){
+        if(root == null) return -1; 
+        
+        int lans = dfs(root.left);
+        if(lans >= 0){
+            return lans;
+        }
+        
+        pos--;
+        if(pos == 0){
+            return root.val;
+        }
+        
+        int rans = dfs(root.right);
+        if(rans >= 0){
+            return rans;
+        }
+        
+        return -1;
+    }
+}
