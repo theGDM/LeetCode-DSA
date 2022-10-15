@@ -47,7 +47,7 @@ class Solution {
         search:
         for(int r = 0; r < A.length(); ++r){
             for(int i = 0; i < A.length(); ++i){
-                if (A.charAt((r + i) % A.length()) != B.charAt(i))
+                if(A.charAt((r + i) % A.length()) != B.charAt(i)) //concept of right sshift is used
                     continue search;
             }
             
