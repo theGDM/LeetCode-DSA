@@ -35,3 +35,25 @@ class Solution {
         return s.length() == goal.length() && (s + s).contains(goal);
     }
 }
+
+//TC : O(N2);
+//SC : O(1)
+//More specifically, say we rotate A by s. Then, instead of A[0], A[1], A[2], ..., we have A[s], A[s+1], A[s+2], ...; and we should check that A[s] == B[0], A[s+1] == B[1], A[s+2] == B[2], etc.
+class Solution {
+    public boolean rotateString(String A, String B) {
+        if(A.length() != B.length()) return false;
+        if(A.length() == 0) return true;
+
+        search:
+        for(int r = 0; r < A.length(); ++r){
+            for(int i = 0; i < A.length(); ++i){
+                if (A.charAt((r + i) % A.length()) != B.charAt(i))
+                    continue search;
+            }
+            
+            return true;
+        }
+        
+        return false;
+    }
+}
