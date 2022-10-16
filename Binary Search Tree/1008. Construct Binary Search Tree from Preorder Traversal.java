@@ -43,49 +43,23 @@ class Solution {
     }
 }
 
-
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
-
-
 //TC : O(n)
+//SC : O(n)
 class Solution {
-    public TreeNode bstHelper(int[] preorder, int start, int end){
-        if(nodeIndex == preorder.length || preorder[nodeIndex] < start || preorder[nodeIndex] > end){
-            return null;
-        }
-        
-        //preorder node create
-        int val = preorder[nodeIndex];
-        nodeIndex++;
-        TreeNode node = new TreeNode(val);
-        
-        node.left = bstHelper(preorder, start, val);
-        node.right = bstHelper(preorder, val, end);
-        
-        return node;
+    int index = 0;
+    public TreeNode bstFromPreorder(int[] preorder) {
+        return helper(preorder, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
     
-    int nodeIndex;
-    public TreeNode bstFromPreorder(int[] preorder) {
-        if(preorder == null){
-            return null;
-        }
+    public TreeNode helper(int[] pre, int min, int max){
+        if(index == pre.length) return null;
+        if(pre[index] < min || pre[index] > max) return null;
         
-        nodeIndex = 0;
-        return bstHelper(preorder, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        int val = pre[index];
+        index++; //fianlly increment the index
+        TreeNode node = new TreeNode(val);
+        node.left = helper(pre, min, val);
+        node.right = helper(pre, val, max);
+        return node;
     }
 }
