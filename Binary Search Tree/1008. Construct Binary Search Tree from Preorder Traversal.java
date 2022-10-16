@@ -63,3 +63,25 @@ class Solution {
         return node;
     }
 }
+
+//TC : O(n)
+//SC : O(n)
+//Little optimization, as there is not the use of min 
+class Solution {
+    int index = 0;
+    public TreeNode bstFromPreorder(int[] preorder) {
+        return helper(preorder, Integer.MAX_VALUE);
+    }
+    
+    public TreeNode helper(int[] pre, int max){
+        if(index == pre.length) return null;
+        if(pre[index] > max) return null;
+        
+        int val = pre[index];
+        index++; //fianlly increment the index
+        TreeNode node = new TreeNode(val);
+        node.left = helper(pre, val);
+        node.right = helper(pre, max);
+        return node;
+    }
+}
