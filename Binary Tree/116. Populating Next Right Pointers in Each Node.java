@@ -33,7 +33,7 @@ class Solution {
         
         Node curr = root;
         while(curr != null){
-            if(curr.left != null && curr.right != null){
+            if(curr.left != null && curr.right != null){ //no need to check for right node, as it is perfect BT
                 curr.left.next = curr.right;
             }
             
