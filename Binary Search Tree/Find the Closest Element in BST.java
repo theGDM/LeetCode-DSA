@@ -59,3 +59,28 @@ class Solution{
         }
     }
 }
+
+//Without static variable
+//TC : O(logn)
+//SC : O(1)
+class Solution{
+    //Function to find the least absolute difference between any node
+    //value of the BST and the given integer.
+    static int minDiff(Node root, int K) { 
+        return helper(root, K);
+    } 
+    
+    public static int helper(Node root, int k){
+        if(root == null) return Integer.MAX_VALUE;
+        
+        if(root.data > k){
+            int lans = helper(root.left, k);
+            return Math.min(lans, Math.abs(root.data - k));
+        }else if(root.data < k){
+            int rans = helper(root.right, k);
+            return Math.min(rans, Math.abs(root.data - k));
+        }else{
+            return 0;
+        }
+    }
+}
