@@ -19,6 +19,7 @@ class Solution{
        return separateDuplicates(tree);
     }
     
+    //making the left cloned tree
     public void createDuplicates(Tree node){
         if(node == null) return;
         
@@ -32,6 +33,7 @@ class Solution{
         node.left = duplicate;
     }
     
+    //setting the random pointers
     public void setRandoms(Tree node){
         if(node == null) return;
         
@@ -44,6 +46,7 @@ class Solution{
         }
     }
     
+    //separating the both original and duplicate tree
     public Tree separateDuplicates(Tree node){
         if(node == null) return null;
         
