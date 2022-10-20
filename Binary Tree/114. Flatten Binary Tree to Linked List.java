@@ -62,5 +62,99 @@ class Solution {
         root.left = null;
         prev = root;
     }
+}//TC : O(N)
+class Solution {
+    public class Pair{
+        TreeNode head;
+        TreeNode tail;
+        
+        Pair(TreeNode head, TreeNode tail){
+            this.head = head;
+            this.tail = tail;
+        }
+    }
+    
+    public void flatten(TreeNode root) {
+        if(root != null){
+            helper(root);
+        }
+    }
+    
+    public Pair helper(TreeNode root){
+        if(root.left != null && root.right != null){
+            Pair lp = helper(root.left);
+            Pair rp = helper(root.right);
+            
+            root.left = null;
+            root.right = lp.head;
+            lp.tail.right = rp.head;
+            
+            Pair mp = new Pair(root, rp.tail);
+            return mp;
+        }else if(root.left != null){
+            Pair lp = helper(root.left);
+            root.left = null;
+            root.right = lp.head;
+            
+            Pair mp = new Pair(root, lp.tail); 
+            return mp;
+        }else if(root.right != null){
+            Pair rp = helper(root.right);
+            
+            Pair mp = new Pair(root, rp.tail); 
+            return mp;
+        }else{
+            Pair mp = new Pair(root, root);
+            return mp;
+        }
+    }
 }
 
+//TC : O(N)
+//Pair Method
+class Solution {
+    public class Pair{
+        TreeNode head;
+        TreeNode tail;
+        
+        Pair(TreeNode head, TreeNode tail){
+            this.head = head;
+            this.tail = tail;
+        }
+    }
+    
+    public void flatten(TreeNode root) {
+        if(root != null){
+            helper(root);
+        }
+    }
+    
+    public Pair helper(TreeNode root){
+        if(root.left != null && root.right != null){
+            Pair lp = helper(root.left);
+            Pair rp = helper(root.right);
+            
+            root.left = null;
+            root.right = lp.head;
+            lp.tail.right = rp.head;
+            
+            Pair mp = new Pair(root, rp.tail);
+            return mp;
+        }else if(root.left != null){
+            Pair lp = helper(root.left);
+            root.left = null;
+            root.right = lp.head;
+            
+            Pair mp = new Pair(root, lp.tail); 
+            return mp;
+        }else if(root.right != null){
+            Pair rp = helper(root.right);
+            
+            Pair mp = new Pair(root, rp.tail); 
+            return mp;
+        }else{
+            Pair mp = new Pair(root, root);
+            return mp;
+        }
+    }
+}
