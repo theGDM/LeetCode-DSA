@@ -62,3 +62,43 @@ public class Solution {
         return mp;
     }
 }
+
+
+//TC : O(N)
+//Global variable method without pair
+public class Solution {
+    /**
+     * @param root: the given tree
+     * @return: the number of uni-value subtrees.
+     */
+    public int count;
+    public int countUnivalSubtrees(TreeNode root) {
+        count = 0;
+        helper(root);
+        return count;
+    }
+
+    public boolean helper(TreeNode root){
+        if(root == null){
+            return true;
+        }
+
+        boolean left = helper(root.left);
+        boolean right = helper(root.right);
+
+        if(left && right){
+            if(root.left != null && root.left.val != root.val){
+                return false;
+            }
+
+            if(root.right != null && root.right.val != root.val){
+                return false;
+            }
+
+            count += 1;
+            return true;
+        }
+
+        return false;
+    }
+}
