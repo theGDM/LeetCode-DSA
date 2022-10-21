@@ -41,3 +41,39 @@ class Solution{
         return h1;
     }
 }
+
+
+//TC : O(N)
+class Solution{ 
+    //Function to convert binary tree into circular doubly linked list.
+    Node start;
+    Node prev;
+    Node bTreeToClist(Node root){
+        start = null;
+        prev = null;
+        helper(root);
+        
+        //make whole list as circular doubly linked list, at the end
+        start.left = prev;
+        prev.right = start;
+        return start;
+    }
+    
+    //previous runs one node behind the curr(root)
+    public void helper(Node root){
+        if(root == null) return;
+        helper(root.left);
+        
+        //inorder work
+        if(prev == null){
+            start = root; //make start to point, very first node in inorder traversal 
+        }else{
+            //make connection
+            prev.right = root;
+            root.left = prev;
+        }
+        prev = root;
+        
+        helper(root.right);
+    }
+}
