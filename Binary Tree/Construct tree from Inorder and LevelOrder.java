@@ -1,6 +1,5 @@
 //O(N2)
-//As we are performing work of O(N), in every node's preorder
-//TC : O(N)
+//As we are performing work of O(N), in every node's preorder, in worst case
 class GfG{
     Node buildTree(int inord[], int level[]){
         HashMap<Integer, Integer> map = new HashMap<>();
