@@ -13,6 +13,7 @@
  *     }
  * }
  */
+
 //TC : O(N)
 class Solution {
     public class Pair{
@@ -22,9 +23,9 @@ class Solution {
     
     public int moves;
     public int distributeCoins(TreeNode root) {
-        ans = 0;
+        moves = 0;
         helper(root);
-        return ans;
+        return moves;
     }
     
     public Pair helper(TreeNode root){
