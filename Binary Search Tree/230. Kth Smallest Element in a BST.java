@@ -91,3 +91,41 @@ class Solution {
         return -1;
     }
 }
+
+//Now it is using the O(N) recursion call stack space, which we don't want,
+//so we need to go for morris traversal
+class Solution {
+    public int kthSmallest(TreeNode root, int k) {
+        int pos = 0;
+        TreeNode curr = root;
+        int ans = root.val;
+        while(curr != null){
+            if(curr.left == null){ //No left subtree
+                pos++;
+                if(pos == k){
+                    ans = curr.val; 
+                }
+                curr = curr.right; //go to right
+            }else{
+                TreeNode iop = curr.left; //inorder predessor
+                while(iop.right != null && iop.right != curr){
+                    iop = iop.right;
+                }
+                
+                if(iop.right == null){ //left is not processd
+                    iop.right = curr; //make the thread 
+                    curr = curr.left; 
+                }else{ //left is processed
+                    pos++;
+                    if(pos == k){
+                        ans = curr.val; 
+                    }
+                    iop.right = null; //break the link
+                    curr = curr.right;
+                }
+            }
+        }
+        
+        return ans;
+    }  
+}
