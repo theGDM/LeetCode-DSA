@@ -102,9 +102,12 @@ class Solution {
         while(curr != null){
             if(curr.left == null){ //No left subtree
                 pos++;
+                //printing area
                 if(pos == k){
-                    ans = curr.val; 
+                    ans = curr.val;
+                    break;
                 }
+                
                 curr = curr.right; //go to right
             }else{
                 TreeNode iop = curr.left; //inorder predessor
@@ -116,9 +119,11 @@ class Solution {
                     iop.right = curr; //make the thread 
                     curr = curr.left; 
                 }else{ //left is processed
+                    //printing area
                     pos++;
                     if(pos == k){
                         ans = curr.val; 
+                        break;
                     }
                     iop.right = null; //break the link
                     curr = curr.right;
