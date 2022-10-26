@@ -84,6 +84,7 @@ class Solution {
 
 //Little optimized
 //TC : O(N)
+//SC : O(N), considering recursion call stack space
 //Using Pair method
 class Solution {
     public class Pair{
@@ -102,19 +103,19 @@ class Solution {
     
     public Pair helper(TreeNode root){
         if(root == null){
-            Pair bp = new Pair();
+            Pair bp = new Pair(); //base pair
             bp.val = null;
             bp.depth = -1;
             
             return bp;
         }
         
-        Pair lp = helper(root.left);
-        Pair rp = helper(root.right);
+        Pair lp = helper(root.left); //getting left pair
+        Pair rp = helper(root.right); //getting right pair 
         
-        Pair mp = new Pair();
+        Pair mp = new Pair(); //creating my pair
         boolean isBothChildEqualsParent = false;
-        if(lp.val != null && rp.val != null){
+        if(lp.val != null && rp.val != null){ //when both left and right child exist
             if(lp.val == root.val && rp.val == root.val){
                 mp.depth = Math.max(lp.depth, rp.depth) + 1;
                 isBothChildEqualsParent = true; //in this case parent value is same as that of both childs
@@ -125,13 +126,13 @@ class Solution {
             }else{
                 mp.depth = 0;
             }
-        }else if(lp.val != null){
+        }else if(lp.val != null){ //when only left child exist
             if(lp.val == root.val){
                 mp.depth = lp.depth + 1;
             }else{
                 mp.depth = 0;
             }
-        }else if(rp.val != null){
+        }else if(rp.val != null){ //when only right child exist
             if(rp.val == root.val){
                 mp.depth = rp.depth + 1;
             }else{
@@ -141,11 +142,11 @@ class Solution {
             mp.depth = 0;
         }
         
-        //two different conditions
+        //two different conditions, for evaluating max
         if(isBothChildEqualsParent) max = Math.max(max, lp.depth + rp.depth + 2);
-        else max = Math.max(max, mp.depth);
+        else max = Math.max(max, mp.depth); //calculate max
         
-        mp.val = root.val;
+        mp.val = root.val; //set my pair val as root value
         return mp;
     }
 }
