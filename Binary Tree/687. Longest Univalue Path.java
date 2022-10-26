@@ -150,3 +150,36 @@ class Solution {
         return mp;
     }
 }
+
+//TC : O(N)
+//SC : O(N), considering recursion call stack space
+// Without using pair
+//in terms of nodes
+class Solution {
+    int max;
+    public int longestUnivaluePath(TreeNode root) {
+        if(root == null) return 0;
+        
+        max = 0;
+        helper(root, -1);
+        if(max > 0) max = max - 1; 
+        return max;
+    }
+    
+    public int helper(TreeNode root, int val){
+        if(root == null){
+           return 0;
+        }
+        
+        int left = helper(root.left, root.val);
+        int right = helper(root.right, root.val);
+        
+        max = Math.max(max, left + right + 1); //calculate answer
+        
+        if(root.val == val){
+            return Math.max(left, right) + 1;
+        }else{
+            return 0;
+        }        
+    }
+}
