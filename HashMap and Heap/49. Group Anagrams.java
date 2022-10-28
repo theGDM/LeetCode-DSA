@@ -29,3 +29,29 @@ class Solution {
         return res;
     }
 }
+
+
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        HashMap<HashMap<Character, Integer>, List<String>> map = new HashMap<>();
+        for(String str : strs){
+            HashMap<Character, Integer> freq = new HashMap<>(); //create frequency map for each str
+            for(int i  = 0; i < str.length(); ++i){
+                char ch = str.charAt(i);
+                freq.put(ch, freq.getOrDefault(ch, 0) + 1);
+            }
+            
+            if(map.containsKey(freq) == false){
+                map.put(freq, new ArrayList<>());
+            }
+            map.get(freq).add(str);
+        }
+        
+        List<List<String>> res = new ArrayList<>();
+        for(HashMap<Character, Integer> freq : map.keySet()){
+            res.add(map.get(freq));
+        }
+        
+        return res;
+    }
+}
