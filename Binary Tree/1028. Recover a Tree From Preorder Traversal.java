@@ -13,6 +13,7 @@
  *     }
  * }
  */
+//TC : O(N), where N is length of str
 class Solution {
     int i = 0;
     public TreeNode recoverFromPreorder(String traversal) {
