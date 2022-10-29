@@ -51,3 +51,74 @@ class Solution {
         return node;
     }
 }
+
+
+//Wrong Logic
+//TC : O(N), where N is length of str
+class Solution {
+    int i = 0;
+    public TreeNode recoverFromPreorder(String traversal) {
+        if(traversal.length() == 0) return null;
+        
+        HashMap<Integer, ArrayList<Integer>> map = new HashMap<>();
+        while(i < traversal.length()){
+            int countDashes = 0;
+            while(i < traversal.length() && traversal.charAt(i) == '-'){
+                countDashes++;
+                i++;
+            }
+            
+            int start = i;
+            while(i < traversal.length() && traversal.charAt(i) != '-'){ //calculating value
+                i++;
+            }
+            
+            int val = Integer.parseInt(traversal.substring(start, i)); //get the value
+            if(map.containsKey(countDashes) == false){
+                map.put(countDashes, new ArrayList<>());
+            }
+            map.get(countDashes).add(val);
+        }
+        
+        
+        return createBT(traversal, map);
+    }
+    
+    public TreeNode createBT(String s, HashMap<Integer, ArrayList<Integer>> map){
+        Queue<TreeNode> q = new ArrayDeque<>();
+        TreeNode root = new TreeNode(map.get(0).get(0));
+        q.add(root);
+        
+        int depth = 1;
+        while(q.size() > 0){
+            int size = q.size();
+            ArrayList<Integer> childs = null;
+            if(map.containsKey(depth) == true){
+                childs = map.get(depth);
+            }else{
+                break;
+            }
+            
+            int i = 0;
+            while(size-- > 0){
+                TreeNode rem = q.remove();
+                
+                rem.left = i < childs.size() ? new TreeNode(childs.get(i)) : null;
+                if(rem.left != null){
+                    q.add(rem.left);
+                }
+                i++;
+                
+                rem.right = i < childs.size() ? new TreeNode(childs.get(i)) : null;
+                if(rem.right != null){
+                    q.add(rem.right);
+                }
+                i++;
+            }
+            
+            depth++;
+        }
+        
+        return root;
+    }
+}
