@@ -14,6 +14,7 @@
  * }
  */
 //TC : O(N), where N is length of str
+//TC : O(N * Height), at worst
 class Solution {
     int i = 0;
     public TreeNode recoverFromPreorder(String traversal) {
@@ -52,6 +53,92 @@ class Solution {
     }
 }
 
+//TC : O(N), at worst
+class Solution {
+    int i = 0;
+    int prevDashCount = -1;
+    public TreeNode recoverFromPreorder(String traversal) {
+        return createBT(traversal, 0);
+    }
+    
+    public TreeNode createBT(String str, int depth){
+        if(prevDashCount != -1 && prevDashCount != depth){
+            return null;
+        }else{
+            prevDashCount = -1;
+        }
+        
+        int countDash = 0;
+        int j = i;
+        
+        while(j < str.length() && str.charAt(j) == '-'){ //couting the depth of node
+            countDash++;
+            j++;
+        }
+        
+        if(countDash != depth){ 
+            prevDashCount = countDash;
+            return null;
+        }
+        
+        int start = j;
+        while(j < str.length() && str.charAt(j) != '-'){ //calculating value
+            j++;
+        }
+        
+        int val = Integer.parseInt(str.substring(start, j)); //get the value
+        i = j; // finally update i
+        
+        TreeNode node = new TreeNode(val); //make the treenode with found value
+        node.left = createBT(str, depth + 1); //call for left child
+        if(node.left != null) node.right = createBT(str, depth + 1); //call for right child
+        
+        return node;
+    }
+}
+
+//again we want to stop for right
+//TC : O(N), at worst
+class Solution {
+    int i = 0;
+    int pdc = -1;
+    public TreeNode recoverFromPreorder(String traversal) {
+        return createBT(traversal, 0);
+    }
+    
+    public TreeNode createBT(String str, int depth){
+        int d = 0;
+        if(pdc != -1){
+            d = pdc;
+        }else{//find dashes
+            while(i + d < str.length() && str.charAt(i + d) == '-'){ //couting the depth of node
+                 d++;
+            }
+        }
+        
+        
+        if(d != depth){ 
+            pdc = d; //save in previous dash count
+            return null;
+        }else{
+            pdc = -1; 
+        }
+        
+        int nd = 0;
+        while(i + d + nd < str.length() && str.charAt(i + d + nd) != '-'){ //calculating value
+            nd++;
+        }
+        
+        int val = Integer.parseInt(str.substring(i + d, i + d + nd)); //get the value
+        i = i + d + nd; // finally update i
+        
+        TreeNode node = new TreeNode(val); //make the treenode with found value
+        node.left = createBT(str, depth + 1); //call for left child
+        if(node.left != null) node.right = createBT(str, depth + 1); //call for right child
+        
+        return node;
+    }
+}
 
 //Wrong Logic
 //TC : O(N), where N is length of str
