@@ -1,3 +1,22 @@
+//TLE
+public class Solution extends VersionControl {
+    int possibleBadVersion;
+    public int firstBadVersion(int n) {
+        possibleBadVersion = n;
+        helper(n);
+        return possibleBadVersion;
+    }
+    
+    public void helper(int n){
+        if(n == 0) return;
+        
+        if(isBadVersion(n) == true){
+            possibleBadVersion = n;
+        }
+        helper(n - 1);
+    }
+}
+
 /* The isBadVersion API is defined in the parent class VersionControl.
       boolean isBadVersion(int version); */
 
