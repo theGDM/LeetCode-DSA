@@ -1,3 +1,27 @@
+//TC : O(4^n)
+class Solution {
+    String[] numToChar;
+    public List<String> letterCombinations(String digits) {
+        if(digits.length() == 0) return new ArrayList();
+        numToChar = new String[]{"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        List<String> res = new ArrayList<>();
+        letterCombinations(0, digits, "", res);
+        
+        return res;
+    }
+    
+    public void letterCombinations(int idx, String digits, String output, List<String> res){
+        if(idx == digits.length()){
+            res.add(output);
+            return;
+        }
+        
+        for(char ch : numToChar[digits.charAt(idx) - '0'].toCharArray()){
+            letterCombinations(idx + 1, digits, output + ch, res);
+        }
+    }
+}
+
 class Solution {
     String[] combination;
     public List<String> letterCombinations(String digits) {
