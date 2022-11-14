@@ -35,3 +35,44 @@ class Solution {
         helper(node.right, currSum + node.val);//faith call
     }
 }
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+//Faster than 100%
+//TC : O(N)
+class Solution {
+    public int sum = 0;
+    public int sumNumbers(TreeNode root) {
+        helper(root, 0);
+        return sum;
+    }
+    
+    public void helper(TreeNode node, int currSum){
+        if(node == null){ //base case
+            return;
+        }
+        
+        if(node.left == null && node.right == null){
+            currSum = currSum * 10 + node.val;//adding current node value
+            sum += currSum;
+            return;
+        }
+        
+        helper(node.left, currSum * 10 + node.val);//faith call
+        helper(node.right, currSum * 10 + node.val);//faith call
+    }
+}
