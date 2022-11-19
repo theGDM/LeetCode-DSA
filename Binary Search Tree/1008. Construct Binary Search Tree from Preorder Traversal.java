@@ -13,7 +13,6 @@
  *     }
  * }
  */
-
 //TC : O(nlog(n)) ~ worst case : O(n * n) //eg 5, 6, 7, 8, 9, 10
 class Solution {
     public TreeNode addInBst(TreeNode root, int val){
