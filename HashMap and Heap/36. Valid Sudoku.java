@@ -1,4 +1,4 @@
-//TC : O(n2)
+//TC : O(n^2 + n^2 + n^2) ~ O(n^2).
 //SC : O(9) ~ O(1)
 class Solution {
     public boolean isValidSudoku(char[][] board) {
