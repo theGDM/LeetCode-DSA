@@ -45,3 +45,37 @@ class Solution {
         return true;
     }
 }
+
+//TC : O(n2)
+//SC : O(9 * 9) ~ O(1)
+class Solution {
+    public boolean isValidSudoku(char[][] board) {
+        Set<String> set = new HashSet<>();
+        for (int row = 0; row < 9; row++) {
+            for (int col = 0; col < 9; col++) {
+                char num = board[row][col];
+                if(num == '.') continue;
+                
+                if(set.contains(num + " in row " + row) == false){
+                    set.add(num + " in row " + row);
+                }else{
+                    return false;
+                }
+                
+                if(set.contains(num + " in col " + col) == false){
+                    set.add(num + " in col " + col);
+                }else{
+                    return false;
+                }
+                
+                if(set.contains(num + " in block " + (row / 3)  + "," + (col / 3)) == false){
+                    set.add(num + " in block " + (row / 3)  + "," + (col / 3));
+                }else{
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}
+
