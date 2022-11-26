@@ -75,3 +75,73 @@ class Solution {
         return null;
     }
 }
+
+//TC : O(3 * n) ~ O(n)
+//SC : O(n)
+class Solution {
+    TreeNode first = null;
+    TreeNode second = null;
+    boolean isFirstFound = false;
+    public TreeNode subtreeWithAllDeepest(TreeNode root) {
+        int depth = getDepth(root);
+        getNodesAtDepth(root, 1, depth);
+
+        if(first != null && second != null){
+            return LCA(root, first, second);
+        }else{
+            return first;
+        }
+    }
+    
+    //putting all the nodes at that level in arraylist
+    public void getNodesAtDepth(TreeNode root, int cd, int d){ //O(n)
+        if(root == null) return;
+        if(cd == d){ //if current depth is equal to the depth of tree, then add those nodes
+            if(isFirstFound == false){
+                first = root;
+                isFirstFound = true;
+            }else{
+                second = root;
+            }
+        }
+        
+        getNodesAtDepth(root.left, cd + 1, d);
+        getNodesAtDepth(root.right, cd + 1, d);
+    }
+    
+    //getting the depth of binary tree
+    public int getDepth(TreeNode root){
+        if(root == null) return 0;
+        int lDepth = getDepth(root.left); //left depth
+        int rDepth = getDepth(root.right); //right depth
+        return Math.max(lDepth, rDepth) + 1;
+    }
+    
+    //code for finding LCA of two nodes
+    public TreeNode LCA(TreeNode root, TreeNode p, TreeNode q) { //O(n)
+        if(root == null){
+            return null;
+        }
+        
+        if(root == p || root == q){
+            return root;
+        }
+        
+        TreeNode left = LCA(root.left, p, q);
+        TreeNode right = LCA(root.right, p, q);
+        
+        if(left != null && right != null){
+            return root;
+        }
+        
+        if(left != null){
+            return left;
+        }
+        
+        if(right != null){
+            return right;
+        }
+        
+        return null;
+    }
+}
