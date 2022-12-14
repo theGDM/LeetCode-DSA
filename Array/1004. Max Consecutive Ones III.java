@@ -1,5 +1,6 @@
 //Acuired and release startegy
 //TC : O(n) //SC : O(1)
+
 class Solution {
     public int longestOnes(int[] nums, int k) {
         int i = 0; //include pointer
