@@ -1,4 +1,6 @@
 //TLE
+//TC : O(N * Max(jums))
+//TC : O(10^4 * 10^5) = O(10^9)
 class Solution {
     public boolean canJump(int[] nums) {
         if(nums.length == 1) return true;
