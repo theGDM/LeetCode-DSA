@@ -48,3 +48,20 @@ class Solution {
         return dp[idx] = false;
     }
 }
+
+//TC : O(N)
+//SC : O(1)
+class Solution {
+    public boolean canJump(int[] nums) {
+        int reach = 0;
+        for(int i = 0; i < nums.length; ++i){
+            if(i > reach) return false; //kyuki maximum reach tak hi pahuch sakte hai
+            
+            if(nums[i] + i > reach){
+                reach = nums[i] + i; //update reach
+            }
+        }
+        
+        return true;
+    }
+} 
