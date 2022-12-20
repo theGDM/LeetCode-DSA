@@ -36,7 +36,6 @@ class Solution{
 	    if(N == 1) return dp[N] = 0;
 	    if(dp[N] != -1) return dp[N];
 	    
-	    int ans = Integer.MAX_VALUE;
 	    int ans1 = (N % 2 == 0) ? memoMinSteps(N / 2, dp) : Integer.MAX_VALUE;
 	    int ans2 = (N % 3 == 0) ? memoMinSteps(N / 3, dp) : Integer.MAX_VALUE;
 	    int ans3 = memoMinSteps(N - 1, dp);
