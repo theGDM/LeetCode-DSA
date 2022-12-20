@@ -25,6 +25,7 @@ class Solution{
 }
 
 //SC : O(N)
+//TC : O(N), worst
 class Solution{
 	public int minSteps(int N) { 
 	    int[] dp = new int[N + 1];
