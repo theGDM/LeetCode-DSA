@@ -41,3 +41,32 @@ class Solution {
         return ans;
     }
 }
+
+//TC : O(2 * N)
+//SC : O(2 * N)
+class Solution {
+    long mod = 1000000007;
+    long countStrings(int n) {
+        long[][] dp = new long[2][n + 1];
+        for(int i = 0; i < 2; ++i){
+            Arrays.fill(dp[i], -1);
+        }
+        
+        return helper(n, 0, dp);
+    }
+    
+    long helper(int noOfDigits, int prevDigit, long[][] dp){
+        if(noOfDigits == 0) {
+            return dp[prevDigit][noOfDigits] = 1; //Empty string
+        }
+        
+        if(dp[prevDigit][noOfDigits] != -1){
+            return dp[prevDigit][noOfDigits];
+        }
+        
+        long appending0 = helper(noOfDigits - 1, 0, dp);
+        long appending1 = (prevDigit != 1) ? helper(noOfDigits - 1, 1, dp) : 0;
+        long ans = (appending0 + appending1) % mod;
+        return dp[prevDigit][noOfDigits] = ans;
+    }
+}
