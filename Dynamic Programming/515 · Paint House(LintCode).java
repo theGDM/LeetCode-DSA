@@ -33,8 +33,8 @@ public class Solution {
     }
 }
 
-//TC : O(N)
-//SC : O(N)
+//TC : O(N * 3)
+//SC : O(N * 3)
 public class Solution {
     /**
      * @param costs: n x 3 cost matrix
