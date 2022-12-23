@@ -58,3 +58,32 @@ public class Solution {
         return ans;
     }
 }
+
+//TC : O(N)
+//SC : O(1)
+public class Solution {
+    /**
+     * @param costs: n x 3 cost matrix
+     * @return: An integer, the minimum cost to paint all houses
+     */
+    public int minCost(int[][] costs) {
+        int n = costs.length;
+        if(n == 0) return 0;
+        //if previous states are limited than only space optimization is possible
+        int prev0 = costs[0][0];
+        int prev1 = costs[0][1];
+        int prev2 = costs[0][2];
+
+        for(int i = 1; i < n; ++i){
+            int new0 = Math.min(prev1, prev2) + costs[i][0];
+            int new1 = Math.min(prev0, prev2) + costs[i][1];
+            int new2 = Math.min(prev0, prev1) + costs[i][2];
+            
+            prev0 = new0;
+            prev1 = new1;
+            prev2 = new2;
+        }
+
+        return Math.min(prev0, Math.min(prev1, prev2));
+    }
+}
