@@ -22,3 +22,30 @@ class Solution {
     }
     
 }
+
+class Solution {
+    //TC : O(N);
+    //SC : O(N);
+    public int nthUglyNumber(int n) {
+        //pointers pointing to indices not values
+        int p2 = 1, p3 = 1, p5 = 1;
+        int[] dp = new int[n + 1];
+        dp[1] = 1; //first ugly number is 1
+        
+        for(int i = 2; i <= n; ++i){
+            int p2Val = dp[p2] * 2;
+            int p3Val = dp[p3] * 3;
+            int p5Val = dp[p5] * 5;
+            
+            int currentUglyNumber = Math.min(p2Val, Math.min(p3Val, p5Val));
+            //move the pointer(s) that produced the currentUglyNumber
+            //so we don't consider that value again
+            if(currentUglyNumber == p2Val) p2++;
+            if(currentUglyNumber == p3Val) p3++;
+            if(currentUglyNumber == p5Val) p5++;
+            dp[i] = currentUglyNumber;
+        }
+        
+        return dp[n];
+    }  
+}
