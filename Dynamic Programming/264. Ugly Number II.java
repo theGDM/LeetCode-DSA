@@ -49,3 +49,29 @@ class Solution {
         return dp[n];
     }  
 }
+
+//SC : O(3 * n)
+//TC : O(nlogn)
+class Solution {
+    public int nthUglyNumber(int n) {
+        PriorityQueue<Long> pq = new PriorityQueue<>();
+        HashSet<Long> visited = new HashSet<>();
+        pq.add(1l);
+        
+        int count = 0;
+        while(pq.size() > 0){ 
+            long rem = pq.remove();
+            if(visited.contains(rem)) continue;
+            
+            count++;
+            if(count == n) return (int)rem; //nth time we will get nth ugly number
+            
+            visited.add(rem); //mark visited
+            pq.add(rem * 2);
+            pq.add(rem * 3);
+            pq.add(rem * 5);
+        }
+        
+        return -1; 
+    }  
+}
