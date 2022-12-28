@@ -45,15 +45,6 @@ class Solution {
 //TC : O(N * K), N is length of the nums array
 //SC : O(N)
 class Solution {
-    public static class Pair{
-        int min;
-        int max; 
-        Pair(int min, int max){
-            this.min = min;
-            this.max = max;
-        }
-    }
-    
     public int maxResult(int[] nums, int k) {
         int n = nums.length;
         int[] dp = new int[nums.length + 1];
