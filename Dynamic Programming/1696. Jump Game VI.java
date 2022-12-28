@@ -43,7 +43,7 @@ class Solution {
 }
 
 //TC : O(N * K), N is length of the nums array
-//SC : O(N)
+//SC : O(N), dp + r.c.s. 
 class Solution {
     public int maxResult(int[] nums, int k) {
         int n = nums.length;
@@ -69,5 +69,28 @@ class Solution {
         }
         
         return dp[idx] = ans + costs[idx];
+    }
+}
+
+
+//TC : O(N * K), N is length of the nums array
+//SC : O(N), dp array
+class Solution {
+    public int maxResult(int[] nums, int k) {
+        int n = nums.length;
+        int[] dp = new int[nums.length + 1];
+        dp[n - 1] = nums[n - 1];
+        for(int i = n - 2; i >= 0; --i){
+            int ans = Integer.MIN_VALUE;
+            for(int j = 1; j <= k; ++j){
+                if(i + j <= n - 1){
+                    ans = Math.max(ans, dp[i + j]); 
+                }
+            }
+    
+            dp[i] = ans + nums[i];
+        }
+        
+        return dp[0];
     }
 }
