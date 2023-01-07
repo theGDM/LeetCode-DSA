@@ -38,6 +38,8 @@ class Solution {
     }
 }
 
+//TC : O(Amount * coins.length)
+//SC : O(Amount)
 class Solution {
     public int coinChange(int[] coins, int amount) {
         int[] dp = new int[amount + 1];
