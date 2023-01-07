@@ -37,3 +37,27 @@ class Solution {
         else return ans;
     }
 }
+
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        int[] dp = new int[amount + 1];
+        Arrays.fill(dp, -1);
+        int minCoins = helper(amount, coins, dp);
+        return minCoins == Integer.MAX_VALUE ? -1 : minCoins;
+    }
+    
+    public int helper(int amount, int[] denoms, int[] dp){
+        if(amount == 0) return dp[amount] = 0;
+        if(dp[amount] != -1) return dp[amount];
+        
+        int minCoins = Integer.MAX_VALUE;
+        for(int i = 0; i < denoms.length; ++i){
+            if(amount - denoms[i] >= 0){
+                minCoins = Math.min(minCoins, helper(amount - denoms[i], denoms, dp));
+            }
+        }
+        
+        if(minCoins != Integer.MAX_VALUE) return dp[amount] = minCoins + 1;
+        else return dp[amount] = minCoins;
+    }
+}
