@@ -85,3 +85,34 @@ class Solution {
         return dp[amount] == Integer.MAX_VALUE ? -1 : dp[amount];
     }
 }
+
+//2D DP Solution
+//TC : O(Amount * coins.length)
+//SC : O(Amount * coins)
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        int[][] dp = new int[amount + 1][coins.length];
+        for(int i = 0; i < dp.length; ++i){
+            Arrays.fill(dp[i], -1);
+        }
+        
+        int minCoins = memo(amount, 0, coins, dp);
+        return minCoins == Integer.MAX_VALUE ? -1 : minCoins;
+    }
+    
+    public int memo(int amount, int idx, int[] coins, int[][] dp){
+        if(amount == 0) return 0;
+        if(idx == coins.length) return Integer.MAX_VALUE;
+        
+        if(dp[amount][idx] != -1) return dp[amount][idx];
+        
+        int minCoins = Integer.MAX_VALUE;
+        for(int coin = 0; amount >= coins[idx] * coin; ++coin){
+            int ans = memo(amount - coins[idx] * coin, idx + 1, coins, dp);
+            if(ans != Integer.MAX_VALUE) ans += coin;
+            minCoins = Math.min(minCoins, ans);
+        }
+        
+        return dp[amount][idx] = minCoins;
+    }
+}
