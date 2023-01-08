@@ -63,3 +63,25 @@ class Solution {
         else return dp[amount] = minCoins;
     }
 }
+
+//TC : O(Amount * coins.length)
+//SC : O(Amount), DP
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        int[] dp = new int[amount + 1];
+        Arrays.fill(dp, Integer.MAX_VALUE);
+        dp[0] = 0;
+        for(int amt = 1; amt <= amount; ++amt){
+            int minCoins = Integer.MAX_VALUE;
+            for(int c = 0; c < coins.length; ++c){
+                if(amt - coins[c] >= 0){
+                    minCoins = Math.min(minCoins, dp[amt - coins[c]]);
+                }
+            }
+            
+            if(minCoins != Integer.MAX_VALUE) dp[amt] = minCoins + 1;
+        }
+        
+        return dp[amount] == Integer.MAX_VALUE ? -1 : dp[amount];
+    }
+}
