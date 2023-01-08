@@ -86,6 +86,7 @@ class Solution {
     }
 }
 
+//2nd approach
 //2D DP Solution
 //TC : O(Amount * coins.length)
 //SC : O(Amount * coins)
@@ -113,6 +114,40 @@ class Solution {
             minCoins = Math.min(minCoins, ans);
         }
         
+        return dp[amount][idx] = minCoins;
+    }
+}
+
+
+//3rd approach
+//2D DP Solution
+//TC : O(Amount * coins.length)
+//SC : O(Amount * coins)
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        int[][] dp = new int[amount + 1][coins.length];
+        for(int i = 0; i < dp.length; ++i){
+            Arrays.fill(dp[i], -1);
+        }
+        
+        int minCoins = memo(amount, 0, coins, dp);
+        return minCoins == Integer.MAX_VALUE ? -1 : minCoins;
+    }
+    
+    public int memo(int amount, int idx, int[] coins, int[][] dp){
+        if(amount == 0) return 0;
+        if(idx == coins.length) return Integer.MAX_VALUE;
+        
+        if(dp[amount][idx] != -1) return dp[amount][idx];
+        
+        //yes call
+        int yes = (amount - coins[idx] >= 0) ? memo(amount - coins[idx], idx, coins, dp) : Integer.MAX_VALUE;
+        if(yes != Integer.MAX_VALUE) yes += 1;
+        
+        //no call
+        int no = memo(amount, idx + 1, coins, dp);
+        
+        int minCoins = Math.min(yes, no);
         return dp[amount][idx] = minCoins;
     }
 }
