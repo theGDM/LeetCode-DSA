@@ -43,3 +43,21 @@ class Solution {
         return dp[amount];
     }
 }
+
+//Faster than 100% solution
+//2D dp
+//TC : O(Amount * coins)
+//SC : O(Amount * coins)
+class Solution {
+    public int change(int amount, int[] coins) {
+        int[] dp = new int[amount + 1];
+        dp[0] = 1;
+        for(int coin : coins){
+            for(int amt = coin; amt <= amount; ++amt){
+                dp[amt] += dp[amt - coin];
+            }
+        }
+        
+        return dp[amount];
+    }
+}
