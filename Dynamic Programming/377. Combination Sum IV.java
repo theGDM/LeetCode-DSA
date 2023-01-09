@@ -22,3 +22,24 @@ class Solution {
         return dp[amount] = ans;
     }
 }
+
+//Tabulation
+//TC : O(Amount * coins)
+//SC : O(Amount)
+class Solution {
+    public int combinationSum4(int[] coins, int target) {
+        int[] dp = new int[target + 1];
+        dp[0] = 1;
+        for(int amt = 1; amt <= target; ++amt){
+            int totalCoins = 0;
+            for(int coin : coins){
+                if(amt - coin >= 0){
+                    totalCoins += dp[amt - coin];
+                }
+            }
+            dp[amt] = totalCoins;
+        }
+        
+        return dp[target];
+    }
+}
