@@ -26,3 +26,54 @@ class Solution {
         return dp[capacity][item] = Math.max(yes, no);
     }
 }
+
+//TC : O(cap * items)
+//SC : O(cap * items)
+class Solution { 
+    //Function to return max value that can be put in knapsack of capacity W.
+    static int knapSack(int capacity, int wt[], int costs[], int n) {
+        int[][] dp = new int[capacity + 1][costs.length + 1];
+        for(int item = 0; item <= costs.length; ++item){
+            for(int cap = 0; cap <= capacity; ++cap){
+                if(item == 0 || cap == 0){
+                    dp[cap][item] = 0;
+                    continue;
+                }
+                
+                int yes = -1;
+                if(cap - wt[item - 1] >= 0){
+                    yes = dp[cap - wt[item - 1]][item - 1] + costs[item - 1];
+                }
+                
+                int no = dp[cap][item - 1];
+                dp[cap][item] = Math.max(yes, no);
+            }
+        }
+        
+        return dp[capacity][costs.length]; 
+    } 
+}
+
+//TC : O(cap * items)
+//SC : O(cap)
+class Solution { 
+    //Function to return max value that can be put in knapsack of capacity W.
+    static int knapSack(int capacity, int wt[], int costs[], int n) {
+        int[] dp = new int[capacity + 1];
+        for(int item = 1; item <= costs.length; ++item){
+            int[] newDp = new int[capacity + 1];
+            for(int cap = 1; cap <= capacity; ++cap){
+                int yes = -1;
+                if(cap - wt[item - 1] >= 0){
+                    yes = dp[cap - wt[item - 1]] + costs[item - 1];
+                }
+                
+                int no = dp[cap];
+                newDp[cap] = Math.max(yes, no);
+            }
+            dp = newDp;
+        }
+        
+        return dp[capacity];
+    } 
+}
