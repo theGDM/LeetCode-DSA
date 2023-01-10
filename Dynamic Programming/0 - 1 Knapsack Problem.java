@@ -77,3 +77,31 @@ class Solution {
         return dp[capacity];
     } 
 }
+
+
+//TC : O(cap * items)
+//SC : O(2 * cap)
+class Solution { 
+    //Function to return max value that can be put in knapsack of capacity W.
+    static int knapSack(int capacity, int wt[], int costs[], int n) {
+        int[][] dp = new int[2][capacity + 1];
+        for(int item = 1; item <= costs.length; ++item){
+            for(int cap = 1; cap <= capacity; ++cap){
+                int yes = -1;
+                if(cap - wt[item - 1] >= 0){
+                    yes = dp[0][cap - wt[item - 1]] + costs[item - 1];
+                }
+                
+                int no = dp[0][cap];
+                dp[1][cap] = Math.max(yes, no);
+            }
+            
+            for(int i = 0; i <= capacity; ++i){
+                dp[0][i] = dp[1][i];
+            }
+        }
+        
+        return dp[0][capacity]; 
+    
+    } 
+}
