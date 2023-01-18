@@ -16,7 +16,6 @@
 //Using static variables
 //TC : O(n)
 //SC : O(n)
-
 class Solution {
     public int kthSmallest(TreeNode root, int k) {
         ArrayList<Integer> inorder = new ArrayList<>();
