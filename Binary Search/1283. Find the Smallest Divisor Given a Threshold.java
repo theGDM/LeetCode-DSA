@@ -1,6 +1,5 @@
 //TC : nlog(n)
 //if we keep (lo <= hi) loop goes infinite
-
 class Solution {
     public int smallestDivisor(int[] nums, int threshold) {
         int lo = 1;
