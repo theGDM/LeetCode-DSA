@@ -6,7 +6,6 @@ class Solution {
     // row = cell value / Total col.
     // For columns, we have to take the remainder values when an int is divided by the column value.
     // col = cell value % Total col.
-    
     public boolean searchMatrix(int[][] matrix, int target) {
         int left = 0;
         int right = matrix.length * matrix[0].length - 1;
