@@ -9,6 +9,7 @@ class Solution {
             }
             ++steps;
         }
+        
         return steps;
     }
 }
