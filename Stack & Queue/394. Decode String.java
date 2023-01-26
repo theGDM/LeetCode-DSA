@@ -90,3 +90,65 @@ class Solution {
         return res.toString();
     }
 }
+
+
+/////////////////////////////////////////////////////////////
+class Solution {
+    public String decodeString(String s) {
+        Stack<StringBuilder> strStk = new Stack<>();
+        Stack<Integer> numStk = new Stack<>();
+        StringBuilder open = new StringBuilder("[");
+        
+        for(int i = 0; i < s.length(); ++i){
+            char ch = s.charAt(i);
+            
+            if(ch == '['){
+                strStk.push(open);
+                numStk.push(-1);
+            }else if(ch >= 'a' && ch <= 'z'){
+                if(strStk.size() > 0 && strStk.peek() != open){
+                    strStk.peek().append(ch);
+                }else{
+                    strStk.push(new StringBuilder(ch + ""));
+                }
+            }else if(ch >= '0' && ch <= '9'){
+                int n = ch - '0';
+                if(numStk.size() > 0 && numStk.peek() != -1){
+                    int num = numStk.pop() * 10 + n;
+                    numStk.push(num);
+                }else{
+                    numStk.push(n);
+                }
+            }else if(ch == ']'){
+                StringBuilder part = new StringBuilder();
+                while(strStk.size() > 0 && strStk.peek() != open){
+                    part.insert(0, strStk.pop());
+                }
+                strStk.pop(); //remove the last square bracket
+            
+                if(numStk.size() > 1 && numStk.peek() == -1){
+                    numStk.pop();
+                }
+                
+                int times = numStk.pop();
+                StringBuilder ans = new StringBuilder();
+                for(int j = 0; j < times; ++j){
+                    ans.insert(0, part);
+                }
+                strStk.push(ans);
+            }
+            // System.out.println(strStk);
+            // System.out.println(numStk);
+        }
+        
+        StringBuilder ans = new StringBuilder();
+        if(strStk.size() > 1){
+            while(strStk.size() > 0){
+                ans.insert(0, strStk.pop());
+            }
+            return ans.toString();
+        }else{
+            return strStk.peek().toString();
+        }
+    }
+}
