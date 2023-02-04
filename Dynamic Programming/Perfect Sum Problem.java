@@ -1,17 +1,17 @@
 //TC : O(N * Sum)
 class Solution{
     public int mod = 1000000007;
-	public int perfectSum(int arr[],int n, int sum) { 
-	    int[][] dp = new int[arr.length + 1][sum + 1];
+    public int perfectSum(int arr[],int n, int sum) { 
+	int[][] dp = new int[arr.length + 1][sum + 1];
         for(int i = 0; i < dp.length; ++i){
             Arrays.fill(dp[i], -1);
         }
         
         int ans = memo(0, sum, arr, dp);
         return ans;
-	}
+    }
 	
-	public int memo(int idx, int target, int[] arr, int[][] dp) {
+    public int memo(int idx, int target, int[] arr, int[][] dp) {
         if(idx == arr.length){
             if(target == 0) return dp[idx][target] = 1;
             else return dp[idx][target] = 0;
@@ -27,4 +27,35 @@ class Solution{
         int no = memo(idx + 1, target, arr, dp);
         return dp[idx][target] = (yes + no) % mod;
     }
+}
+
+//TC : O(N * Sum)
+class Solution{
+    public int mod = 1000000007;
+	public int perfectSum(int arr[],int n, int target) { 
+	    int[][] dp = new int[arr.length + 1][target + 1];
+        for(int idx = 0; idx <= arr.length; ++idx){
+            for(int sum = 0; sum <= target; ++sum){
+                if(idx == 0 && sum == 0){
+                    dp[idx][sum] = 1;
+                    continue;
+                }
+                
+                if(idx == 0){
+                    dp[idx][sum] = 0;
+                    continue;
+                }
+                
+                int no = dp[idx - 1][sum];
+                int yes = 0;
+                if(sum - arr[idx - 1] >= 0){
+                    yes = dp[idx - 1][sum - arr[idx - 1]];
+                }
+                
+                dp[idx][sum] = (yes + no) % 1000000007;
+            } 
+        }
+  
+        return dp[arr.length][target];
+	}
 }
