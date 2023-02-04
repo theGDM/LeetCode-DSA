@@ -28,3 +28,28 @@ class Solution{
         return dp[idx][target] = (yes + no) % mod;
     }
 }
+
+//TC : O(N * sum)
+//SC : O(Sum)
+class Solution{
+    public static int mod = 1000000007;
+    static Boolean isSubsetSum(int N, int arr[], int target){
+        boolean[] dp = new boolean[target + 1];
+	    dp[0] = true;
+        for(int idx = 1; idx <= arr.length; ++idx){
+            boolean[] newDp = new boolean[target + 1];
+            for(int sum = 0; sum <= target; ++sum){
+                boolean no = dp[sum];
+                boolean yes = false;
+                if(sum - arr[idx - 1] >= 0){
+                    yes = dp[sum - arr[idx - 1]];
+                }
+                
+                newDp[sum] = yes || no;
+            } 
+            
+            dp = newDp;
+        }
+    
+        return dp[target];
+    }
