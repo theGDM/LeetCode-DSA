@@ -59,3 +59,30 @@ class Solution{
         return dp[arr.length][target];
 	}
 }
+
+
+//TC : O(N * Sum)
+//SC : O(sum)
+class Solution{
+    public int mod = 1000000007;
+	public int perfectSum(int arr[],int n, int target) { 
+	    int[] dp = new int[target + 1];
+	    dp[0] = 1;
+        for(int idx = 1; idx <= arr.length; ++idx){
+            int[] newDp = new int[target + 1];
+            for(int sum = 0; sum <= target; ++sum){
+                int no = dp[sum];
+                int yes = 0;
+                if(sum - arr[idx - 1] >= 0){
+                    yes = dp[sum - arr[idx - 1]];
+                }
+                
+                newDp[sum] = (yes + no) % 1000000007;
+            } 
+            
+            dp = newDp;
+        }
+    
+        return dp[target];
+	}
+}
