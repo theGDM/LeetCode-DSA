@@ -1,3 +1,22 @@
+//TC : O(2^N)
+class Solution {
+    public int findTargetSumWays(int[] nums, int target) {
+        return helper(0, 0, target, nums);
+    }
+    
+    public int helper(int idx, int currSum, int target, int[] nums){
+        if(idx == nums.length){
+            if(currSum == target) return 1;
+            else return 0;
+        }
+        
+        int add = helper(idx + 1, currSum + nums[idx], target, nums);
+        int subtract = helper(idx + 1, currSum - nums[idx], target, nums);
+        
+        return add + subtract;
+    }
+}
+
 //TC : O(total * N)
 //SC : O(N * 2 * total)
 class Solution {
