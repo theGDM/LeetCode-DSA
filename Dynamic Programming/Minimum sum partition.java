@@ -20,3 +20,42 @@ class Solution{
 	}
 }
 
+//TC : O(N * total) + O(total)
+class Solution{
+    public int minDifference(int arr[], int n){ 
+	    int total = getSum(arr);
+	    boolean[] dp = new boolean[total + 1];
+	    dp[0] = true;
+        for(int idx = 1; idx <= arr.length; ++idx){
+            boolean[] newDp = new boolean[total + 1];
+            for(int sum = 0; sum <= total; ++sum){
+                boolean no = dp[sum];
+                boolean yes = false;
+                if(sum - arr[idx - 1] >= 0){
+                    yes = dp[sum - arr[idx - 1]];
+                }
+                
+                newDp[sum] = yes || no;
+            } 
+            
+            dp = newDp;
+        }
+        
+        for(int s1 = (total + 1) / 2; s1 <= total; ++s1){
+            if(dp[s1] == true){
+                int s2 = total - s1;
+                return s1 - s2;
+            }
+        }
+        
+        return total;
+	}
+    
+    public int getSum(int[] arr){
+        int sum = 0;
+        for(int n : arr){
+            sum += n;
+        }
+        return sum;
+    }
+}
