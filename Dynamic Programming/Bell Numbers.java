@@ -30,3 +30,33 @@ class Solution{
         return dp[n][k] = (sameRoom + newRoom) % mod;
     }
 }
+
+//TC : O(N * N)
+//SC : O(N * N)
+class Solution{
+    long mod = 1000000007;
+    int bellNumber(int N){
+        long[][] dp = new long[N + 1][N + 1];
+        for(int n = 1; n <= N; ++n){
+            for(int k = 1; k <= N; ++k){
+                if(n < k || k == 0) continue;
+                
+                if(n == k) {
+                    dp[n][k] = 1;
+                    continue;
+                }
+                
+                long sameRoom = (dp[n - 1][k] * k) % mod;
+                long newRoom = dp[n - 1][k - 1];
+                dp[n][k] = (sameRoom + newRoom) % mod;
+            }
+        }
+        
+        long res = 0;
+        for(int i = 0; i < dp[0].length; ++i){
+            res = (res + dp[N][i]) % mod;
+        }
+        
+        return (int)res;
+    }
+}
