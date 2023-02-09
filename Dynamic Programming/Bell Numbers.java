@@ -25,9 +25,9 @@ class Solution{
         
         if(dp[n][k] != -1) return dp[n][k];
         
-        int sameRoom = partitionKSubset(n - 1, k, dp) * k;
+        int share = partitionKSubset(n - 1, k, dp) * k;
         int newRoom = partitionKSubset(n - 1, k - 1, dp);
-        return dp[n][k] = (sameRoom + newRoom) % mod;
+        return dp[n][k] = (share + newRoom) % mod;
     }
 }
 
@@ -46,9 +46,9 @@ class Solution{
                     continue;
                 }
                 
-                long sameRoom = (dp[n - 1][k] * k) % mod;
+                long share = (dp[n - 1][k] * k) % mod;
                 long newRoom = dp[n - 1][k - 1];
-                dp[n][k] = (sameRoom + newRoom) % mod;
+                dp[n][k] = (share + newRoom) % mod;
             }
         }
         
