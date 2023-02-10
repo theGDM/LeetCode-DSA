@@ -28,29 +28,22 @@ class Solution {
     }
 }
 
-//TC : nlog(n)
-//Har length ki Longest increasing subsequence ka, last value store karke rakh rahe hai
+//TC : O(2^N)
 class Solution {
     public int lengthOfLIS(int[] nums) {
-        int[] tails = new int[nums.length];
-        int len = 1;
-        tails[0] = nums[0];
-        
-        for(int i = 1; i < nums.length; ++i){
-            if(nums[i] > tails[len - 1]){
-                len++; //increase the length, and place the value
-                tails[len - 1] = nums[i];
-            }else{
-                int idx = Arrays.binarySearch(tails, 0, len - 1, nums[i]); //it will give the position if
-                if(idx < 0){ //that element found, otherwise, return the -ve indx, at which positon it 
-                    idx = -idx; //should be placed..
-                    idx = idx - 1;
-                }
-                
-                tails[idx] = nums[i];
-            }
-        }
-        
-        return len;
+        return helper(0, -1, nums);
     }
+    
+    public int helper(int curr, int prev, int[] nums){
+        if(curr == nums.length) return 0;
+        
+        int yes = 0;
+        if(prev == -1 || nums[prev] < nums[curr]){
+            yes = helper(curr + 1, curr, nums) + 1;
+        }
+        int no = helper(curr + 1, prev, nums);
+        
+        return Math.max(yes, no);
+    }
+    
 }
