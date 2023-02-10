@@ -60,3 +60,28 @@ class Solution{
         return (int)res;
     }
 }
+
+//TC : O(N * N)
+//SC : O(N * N)
+class Solution{
+    long mod = 1000000007;
+    int bellNumber(int N){
+        long[][] dp = new long[N + 1][N + 1];
+        dp[0][0] = 1;
+        long lastfiled = 1;
+        int col = 1;
+        for(int i = 1; i  <= N; ++i){
+            for(int j = 0; j <= col; ++j){
+                if(j == 0){
+                    dp[i][j] = lastfiled;
+                }else{
+                    dp[i][j] = (dp[i - 1][j - 1] + dp[i][j - 1]) % mod;
+                    lastfiled = dp[i][j];
+                }
+            }
+            col++;
+        }
+        
+        return (int)dp[N][0];
+    }
+}
