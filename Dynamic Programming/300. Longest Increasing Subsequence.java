@@ -69,3 +69,39 @@ class Solution {
         return maxLIS;
     }
 }
+
+//TC : O(nlog(n))
+//SC : O(n)
+class Solution {
+    public int lowerBound(ArrayList<Integer> nums, int target){
+        int low = 0, high = nums.size() - 1;
+        int idx = nums.size();
+        while(low <= high){
+            int mid = low + (high - low) / 2;
+            if(nums.get(mid) < target){
+                low = mid + 1;
+            }else{
+                high = mid - 1;
+                idx = mid;
+            }
+        } 
+        
+        return idx;
+    }
+    
+    public int lengthOfLIS(int[] nums) {
+        ArrayList<Integer> sorted = new ArrayList<>();
+        for(int i = 0; i < nums.length; ++i){
+            int lb = lowerBound(sorted, nums[i]);
+            if(lb == sorted.size()){
+                sorted.add(nums[i]);
+                //current element larger than the largest
+                //LIS of one more length
+            }else{
+                sorted.set(lb, nums[i]);
+            }
+        }
+        
+        return sorted.size(); //this sorted array has the same size as LIS
+    }    
+}
