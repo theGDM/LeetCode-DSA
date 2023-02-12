@@ -70,3 +70,32 @@ class Solution {
         return maxLen;
     }
 }
+
+//TC : O(N * N) worst case
+//SC : O(1)
+class Solution {
+    public int longestMountain(int[] nums) {
+        int max = 0;
+        for(int i = 0; i < nums.length; ++i){
+            //potential peak candidate
+            if(i > 0 && i < nums.length - 1 && nums[i - 1] < nums[i] && nums[i] > nums[i + 1]){
+                int curr = 1; //current length 
+                int left = i;
+                while(left > 0 && nums[left - 1] < nums[left]){
+                    curr++;
+                    left--;
+                }
+                
+                int right = i;
+                while(right < nums.length - 1 && nums[right] > nums[right + 1]){
+                    curr++;
+                    right++;
+                }
+                
+                max = Math.max(max, curr);
+            }
+        }
+        
+        return max;
+    }
+}
