@@ -2,6 +2,8 @@
 //SC : O(N * N)
 class Solution {
     public int numberOfArithmeticSlices(int[] nums) {
+        if(nums.length < 3) return 0;
+        
         HashMap<Long, Long>[] dp = new HashMap[nums.length];
         for(int i = 0; i < nums.length; ++i){
             dp[i] = new HashMap<>();
