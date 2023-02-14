@@ -32,3 +32,26 @@ class Solution {
         }
     }
 }
+
+//TC : O((m + n) + log(m.n))
+//to compare the two concatenations of length (m + n), it takes O(m + n) time.
+//We calculate the GCD using binary Euclidean algorithm, it takes O(log(m.n))
+class Solution { 
+    public String gcdOfStrings(String str1, String str2) {
+        if((str1 + str2).equals(str2 + str1) == false){
+            return "";
+        }
+        
+        int gcdLength = gcd(str1.length(), str2.length());
+        return str1.substring(0, gcdLength);
+    }
+    
+    //TC : O(log(m.n))
+    public int gcd(int x, int y){
+        if(y == 0){
+            return x;
+        }else{
+            return gcd(y, x % y);
+        }
+    }
+}
