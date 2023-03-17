@@ -18,7 +18,8 @@ class Solution {
 }
 
 //Memoization
-//TC : 
+//TC : O(m * n)
+//SC : O(m * n) - 2d dp + rcs
 class Solution {
     public int longestCommonSubsequence(String text1, String text2) {
         int[][] dp = new int[text1.length() + 1][text2.length() + 2];
@@ -47,5 +48,28 @@ class Solution {
         int option2 = LCS(i, j + 1, s1, s2, dp);
         
         return dp[i][j] = 0 + Math.max(option1, option2);
+    }
+}
+
+//Tabulation
+//TC : O(m * n)
+//SC : O(m * n) - 2d dp
+class Solution {
+    public int longestCommonSubsequence(String text1, String text2) {
+        int[][] dp = new int[text1.length() + 1][text2.length() + 2];
+        for(int i = text1.length() - 1; i >= 0; --i){
+            for(int j = text2.length() - 1; j >= 0; --j){
+                int ch1 = text1.charAt(i);
+                int ch2 = text2.charAt(j);
+                
+                if(ch1 == ch2){
+                    dp[i][j] = 1 + dp[i + 1][j + 1];
+                }else{
+                    dp[i][j] = Math.max(dp[i + 1][j], dp[i][j + 1]);
+                }
+            }
+        }
+        
+        return dp[0][0];
     }
 }
