@@ -45,6 +45,7 @@ class WordDictionary {
         curr.setEnd(); //end of the word
     }
     
+    //O(26^L)
     public boolean search(String word, int idx, Node curr){
         if(idx == word.length()){ //base case
             return curr.getEnd();
