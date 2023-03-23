@@ -106,7 +106,7 @@ class Solution {
     }
     
     public String DFS(Node curr){
-        if(curr.getEnd() == true){
+        if(curr.getEnd() == true){ //Eg : ["flow", "flower"]
             return "";
         }
         
