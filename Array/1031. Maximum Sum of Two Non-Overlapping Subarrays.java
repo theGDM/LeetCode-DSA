@@ -7,7 +7,6 @@ class Solution {
         
         return Math.max(max1, max2);
     }
-    
     //left -> i per ya i ke pahle khatam hone wali windows ka max left[i] me store kara lo
     //right -> i ya i ke badd ke pahle jo bhi windows hai unka maximum right[i] me store ho jayega
     public int helper(int[] nums, int fl, int sl){
