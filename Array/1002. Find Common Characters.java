@@ -1,6 +1,5 @@
 //TC : O(n * 100) = O(n);
 //Sc : O(n * 26)
-
 class Solution {
     public List<String> commonChars(String[] words) {
         List<String> res = new ArrayList<>();
