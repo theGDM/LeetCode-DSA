@@ -1,5 +1,6 @@
 //TC : O(cap * items)
 //SC : O(cap * items)
+
 class Solution { 
     //Function to return max value that can be put in knapsack of capacity W.
     static int knapSack(int capacity, int weight[], int costs[], int n) {
