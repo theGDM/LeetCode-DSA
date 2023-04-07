@@ -13,6 +13,7 @@
  *     }
  * }
  */
+
 class Solution {
     public boolean isMirror(TreeNode p, TreeNode q){
         if(p == null && q == null){
