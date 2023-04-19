@@ -1,6 +1,7 @@
 //HashMap version
 // [[2, 2, 6], [2, 4, 7], [8, 6, 7]]
 // 11
+
 class Solution {
     public boolean carPooling(int[][] trips, int capacity) {
         HashMap<Integer, Integer> map = new HashMap<>();
